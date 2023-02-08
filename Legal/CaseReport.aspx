@@ -15,6 +15,7 @@
                         </button>
                     </div>
                     <div class="clearfix"></div>
+                  
                     <div class="modal-body">
                         <fieldset>
                             <legend>Case And Petitioner Details</legend>
