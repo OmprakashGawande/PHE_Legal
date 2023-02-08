@@ -368,7 +368,7 @@
                                         <span style="color: red;">Document Should be 200Kb.</span>
                                     </div>
                                 </div>
-                                <div class="col-md-3" style="padding-top: 3%;">
+                                <div class="col-md-3" style="padding-top: 3.4%;">
                                     <div class="row">
                                         <div class="col-md-6">
                                             <asp:Button ID="btnSaveDoc" runat="server" ValidationGroup="Save" CssClass="btn btn-primary btn-block" Text="Upload Doc" OnClick="btnSaveDoc_Click" />
@@ -454,7 +454,7 @@
                                                     <asp:Label ID="lblResponderNo" runat="server" Text='<%# Eval("RespondentNo") %>'></asp:Label>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Departent">
+                                            <asp:TemplateField HeaderText="Department">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblDepartent" runat="server" Text='<%# Eval("Department") %>'></asp:Label>
                                                 </ItemTemplate>
@@ -525,7 +525,7 @@
                                             <span style="color: red;">Document Should be 200Kb.</span>
                                         </div>
                                     </div>
-                                    <div class="col-md-3" style="padding-top: 3%;">
+                                    <div class="col-md-3" style="padding-top: 3.6%;">
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <asp:Button ID="btnAddHearingDtl" runat="server" CssClass="btn btn-primary btn-block" ValidationGroup="Hearing" Text="Add" OnClick="btnAddHearingDtl_Click" />
@@ -664,7 +664,7 @@
                                             ErrorMessage="Enter Case Dispose Date." ForeColor="Red" Text="<i class='fa fa-exclamation-circle' title='Required !'></i>"
                                             ControlToValidate="txtCaseDisposeDate" Display="Dynamic" runat="server">
                                         </asp:RequiredFieldValidator>
-                                        <asp:TextBox ID="txtCaseDisposeDate" runat="server" data-provide="datepicker" CssClass="form-control" AutoComplete="off" data-date-format="dd/mm/yyyy" data-date-autoclose="true" data-date-start-date="0d" placeholder="DD/MM/YYYY"></asp:TextBox>
+                                        <asp:TextBox ID="txtCaseDisposeDate" runat="server" data-provide="datepicker" CssClass="form-control" AutoComplete="off" data-date-format="dd/mm/yyyy" data-date-autoclose="true" data-date-end-date="-0d" placeholder="DD/MM/YYYY"></asp:TextBox>
                                     </div>
                                 </div>
                                 <div class="col-md-4" id="CaseDis_OrderImpleDaysDiv" runat="server" visible="false">
@@ -690,7 +690,7 @@
                                         <span style="color: red;">Document Should be 200Kb.</span>
                                     </div>
                                 </div>                               
-                                <div class="col-md-3" id="HearingDtl_CaseDispose" runat="server" visible="false" style="padding-top: 3%;">
+                                <div class="col-md-3" id="HearingDtl_CaseDispose" runat="server" visible="false" style="padding-top: 3.4%;">
                                     <div class="row">
                                         <div class="col-md-3">
                                             <asp:Button ID="btnCaseDispose" runat="server" CssClass="btn btn-primary" ValidationGroup="CaseDispose" Text="Case Dispose" OnClick="btnCaseDispose_Click" />
@@ -743,8 +743,12 @@
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label>Case No.</label>
-                                        <asp:TextBox ID="txtCaseNo" runat="server" CssClass="form-control" AutoComplete="off" MaxLength="50"></asp:TextBox>
+                                        <label>Case No.</label><span style="color:red"><b>*</b></span>
+                                        <asp:RequiredFieldValidator runat="server" ID="rfvCaseNo" ForeColor="Red" Display="Dynamic" 
+                                            ControlToValidate="txtCaseNo" ErrorMessage="Enter Case No" ValidationGroup="CaseDtl" Text="<i class='fa fa-exclamation-circle' title='Required !'></i>" >
+
+                                        </asp:RequiredFieldValidator>
+                                        <asp:TextBox ID="txtCaseNo" runat="server" CssClass="form-control"  AutoComplete="off" MaxLength="50"></asp:TextBox>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
@@ -765,7 +769,9 @@
                                             ErrorMessage="Select Case Type" ForeColor="Red" Text="<i class='fa fa-exclamation-circle' title='Required !'></i>"
                                             ControlToValidate="ddlCasetype" Display="Dynamic" runat="server" InitialValue="0">
                                         </asp:RequiredFieldValidator>
-                                        <asp:DropDownList ID="ddlCasetype" runat="server" CssClass="form-control"></asp:DropDownList>
+                                        <asp:DropDownList ID="ddlCasetype" runat="server" CssClass="form-control">
+
+                                        </asp:DropDownList>
                                     </div>
                                 </div>
                             </div>
@@ -779,17 +785,6 @@
                                             ControlToValidate="txtPetitionerName" Display="Dynamic" runat="server">
                                         </asp:RequiredFieldValidator>
                                         <asp:TextBox ID="txtPetitionerName" runat="server" onkeypress="return chcode();" CssClass="form-control" AutoComplete="off" MaxLength="70"></asp:TextBox>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label>Designation</label><span style="color: red;"><b> *</b></span>
-                                        <asp:RequiredFieldValidator ID="rfvDesignation" ValidationGroup="CaseDtl"
-                                            ErrorMessage="Select Designation." ForeColor="Red" Text="<i class='fa fa-exclamation-circle' title='Required !'></i>"
-                                            ControlToValidate="ddldesignation" Display="Dynamic" runat="server" InitialValue="0">
-                                        </asp:RequiredFieldValidator>
-                                        <asp:DropDownList ID="ddldesignation" runat="server" CssClass="form-control">
-                                        </asp:DropDownList>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
@@ -813,6 +808,17 @@
                                         </asp:RequiredFieldValidator>
                                         <%-- <asp:DropDownList ID="ddlOfficeName" runat="server" CssClass="form-control"></asp:DropDownList>--%>
                                         <asp:TextBox ID="txtOfficeName" runat="server" CssClass="form-control" MaxLength="80" AutoComplete="off" onkeypress="return chcode();"></asp:TextBox>
+                                    </div>
+                                </div>
+                                 <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Designation</label><span style="color: red;"><b> *</b></span>
+                                        <asp:RequiredFieldValidator ID="rfvDesignation" ValidationGroup="CaseDtl"
+                                            ErrorMessage="Select Designation." ForeColor="Red" Text="<i class='fa fa-exclamation-circle' title='Required !'></i>"
+                                            ControlToValidate="ddldesignation" Display="Dynamic" runat="server" InitialValue="0">
+                                        </asp:RequiredFieldValidator>
+                                        <asp:DropDownList ID="ddldesignation" runat="server" CssClass="form-control">
+                                        </asp:DropDownList>
                                     </div>
                                 </div>
                             </div>
@@ -1029,10 +1035,10 @@
                                             ErrorMessage="Enter Responder No." ForeColor="Red" Text="<i class='fa fa-exclamation-circle' title='Required !'></i>"
                                             ControlToValidate="txtResponderNo_Res" Display="Dynamic" runat="server">
                                         </asp:RequiredFieldValidator>
-                                        <asp:RegularExpressionValidator ID="RegularExpressionValidator2" ValidationGroup="AddResponder" runat="server" Display="Dynamic" ControlToValidate="txtResponderNo_Res"
+                                        <asp:TextBox ID="txtResponderNo_Res" runat="server" onkeypress="return NumberOnly();" CssClass="form-control" AutoComplete="off" MaxLength="10"></asp:TextBox>
+                                         <asp:RegularExpressionValidator ID="RegularExpressionValidator2" ValidationGroup="AddResponder" runat="server" Display="Dynamic" ControlToValidate="txtResponderNo_Res"
                                             ErrorMessage="Invalid Mobile No." SetFocusOnError="true"
                                             ForeColor="Red" ValidationExpression="^([6-9]{1}[0-9]{9})$"></asp:RegularExpressionValidator>
-                                        <asp:TextBox ID="txtResponderNo_Res" runat="server" onkeypress="return NumberOnly();" CssClass="form-control" AutoComplete="off" MaxLength="10"></asp:TextBox>
                                     </div>
                                 </div>
                                 <div class="col-md-3">

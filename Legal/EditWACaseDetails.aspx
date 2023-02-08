@@ -244,18 +244,18 @@
                                     <table class="table table-bordered table-hover">
                                         <tr>
                                             <th>Particular</th>
-                                            <th>Prevoius Case Detail</th>
+                                            <th>previous Case Detail</th>
                                             <th>Current Case Detail</th>
                                         </tr>
                                         <tr>
-                                            <td>Prevoius/Current Case No</td>
+                                            <td>Previous/Current Case No</td>
                                             <td>
                                                 <asp:Label ID="lblRefCaseNO" runat="server" CssClass=""></asp:Label></td>
                                             <td>
                                                 <asp:Label ID="lblRefWPCaseNo" runat="server" CssClass=""></asp:Label></td>
                                         </tr>
                                           <tr style="display:none;">
-                                            <td>Prevoius/Current Case No</td>
+                                            <td>previous/Current Case No</td>
                                             <td>
                                                 <asp:Label ID="lblWPCaseNo" runat="server"></asp:Label></td>
                                             <td>
@@ -478,7 +478,7 @@
                                                     <asp:Label ID="lblResponderNo" runat="server" Text='<%# Eval("ResponderNo") %>'></asp:Label>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Departent">
+                                            <asp:TemplateField HeaderText="Department">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblDepartent" runat="server" Text='<%# Eval("ResponderDepartMent") %>'></asp:Label>
                                                 </ItemTemplate>
@@ -1073,10 +1073,10 @@
                                             ErrorMessage="Enter Responder No." ForeColor="Red" Text="<i class='fa fa-exclamation-circle' title='Required !'></i>"
                                             ControlToValidate="txtAddResponderMobileNo" Display="Dynamic" runat="server">
                                         </asp:RequiredFieldValidator>
-                                        <asp:RegularExpressionValidator ID="rfvMobileno_AddRes" ValidationGroup="AddResponder" runat="server" Display="Dynamic" ControlToValidate="txtAddResponderMobileNo"
+                                        <asp:TextBox ID="txtAddResponderMobileNo" runat="server" onkeypress="return NumberOnly();" CssClass="form-control" AutoComplete="off" MaxLength="10"></asp:TextBox>
+                                         <asp:RegularExpressionValidator ID="rfvMobileno_AddRes" ValidationGroup="AddResponder" runat="server" Display="Dynamic" ControlToValidate="txtAddResponderMobileNo"
                                             ErrorMessage="Invalid Mobile No." SetFocusOnError="true"
                                             ForeColor="Red" ValidationExpression="^([6-9]{1}[0-9]{9})$"></asp:RegularExpressionValidator>
-                                        <asp:TextBox ID="txtAddResponderMobileNo" runat="server" onkeypress="return NumberOnly();" CssClass="form-control" AutoComplete="off" MaxLength="10"></asp:TextBox>
                                     </div>
                                 </div>
                                 <div class="col-md-4">

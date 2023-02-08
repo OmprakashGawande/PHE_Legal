@@ -204,13 +204,23 @@
                                                 ErrorMessage="Select Court type." ForeColor="Red" Text="<i class='fa fa-exclamation-circle' title='Required !'></i>"
                                                 ControlToValidate="ddlCourtType" Display="Dynamic" runat="server" InitialValue="0">
                                             </asp:RequiredFieldValidator>
-                                            <asp:DropDownList ID="ddlCourtType" runat="server" class="form-control select2" OnSelectedIndexChanged="ddlCourtType_SelectedIndexChanged" AutoPostBack="true">
+                                            <asp:DropDownList ID="ddlCourtType" runat="server" class="form-control select2">
                                             </asp:DropDownList>
-
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3" id="DistrictCourtSelect" runat="server" visible="false">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Court Location</label><span style="color: red;"><b> *</b></span>
+                                        <asp:RequiredFieldValidator ID="rfvCourtlocation" ValidationGroup="Save"
+                                            ErrorMessage="Select Court Location." ForeColor="Red" Text="<i class='fa fa-exclamation-circle' title='Required !'></i>"
+                                            ControlToValidate="ddlDistrict" Display="Dynamic" runat="server" InitialValue="0">
+                                        </asp:RequiredFieldValidator>
+                                        <asp:DropDownList ID="ddlDistrict" runat="server" class="form-control">
+                                        </asp:DropDownList>
+                                    </div>
+                                </div>
+                              <%--  <div class="col-md-3" id="DistrictCourtSelect" runat="server" visible="false">
                                     <div class="form-group">
                                         <div class="form-group">
                                             <label>
@@ -224,7 +234,7 @@
 
                                         </div>
                                     </div>
-                                </div>
+                                </div>--%>
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <div class="form-group">
@@ -245,10 +255,10 @@
                                         <div class="form-group">
                                             <label>
                                                 Case Registration Date</label>
-                                            <asp:RequiredFieldValidator ID="rfvCaseRegisDate" ValidationGroup="Save"
+                                           <%-- <asp:RequiredFieldValidator ID="rfvCaseRegisDate" ValidationGroup="Save"
                                                 ErrorMessage="Enter Date Of Case Registration." ForeColor="Red" Text="<i class='fa fa-exclamation-circle' title='Required !'></i>"
                                                 ControlToValidate="txtDateOfCaseReg" Display="Dynamic" runat="server">
-                                            </asp:RequiredFieldValidator>
+                                            </asp:RequiredFieldValidator>--%>
                                             <asp:TextBox ID="txtDateOfCaseReg" date-provide="datepicker" runat="server" data-date-end-date="0d" data-date-start-date="0d" AutoComplete="off" placeholder="DD/MM/YYYY" class="form-control" ClientIDMode="Static"></asp:TextBox>
                                         </div>
                                     </div>
@@ -257,24 +267,14 @@
                                     <div class="form-group">
                                         <label>
                                             Last Hearing Date</label>
-                                        <asp:RequiredFieldValidator ID="rfvLastHearingdate" ValidationGroup="Save"
+                                       <%-- <asp:RequiredFieldValidator ID="rfvLastHearingdate" ValidationGroup="Save"
                                             ErrorMessage="Enter Date Of Last Hearing." ForeColor="Red" Text="<i class='fa fa-exclamation-circle' title='Required !'></i>"
                                             ControlToValidate="txtDateOfLastHearing" Display="Dynamic" runat="server">
-                                        </asp:RequiredFieldValidator>
+                                        </asp:RequiredFieldValidator>--%>
                                         <asp:TextBox ID="txtDateOfLastHearing" runat="server" date-provide="datepicker" AutoComplete="off" data-date-end-date="0d" placeholder="DD/MM/YYYY" class="form-control" ClientIDMode="Static"></asp:TextBox>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label>Office Location</label><span style="color: red;"><b> *</b></span>
-                                        <asp:RequiredFieldValidator ID="rfvCourtlocation" ValidationGroup="Save"
-                                            ErrorMessage="Select Court Location." ForeColor="Red" Text="<i class='fa fa-exclamation-circle' title='Required !'></i>"
-                                            ControlToValidate="ddlDistrict" Display="Dynamic" runat="server" InitialValue="0">
-                                        </asp:RequiredFieldValidator>
-                                        <asp:DropDownList ID="ddlDistrict" runat="server" class="form-control">
-                                        </asp:DropDownList>
-                                    </div>
-                                </div>
+                                
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label>
@@ -317,25 +317,35 @@
                                                     <label>
                                                         OIC
                                                         <span style="color: red;"><b>*</b></span></label>
-                                                    <asp:RequiredFieldValidator ID="rfvOicName" ValidationGroup="Save"
-                                                        ErrorMessage="Enter OIC Name." ForeColor="Red" Text="<i class='fa fa-exclamation-circle' title='Required !'></i>"
-                                                        ControlToValidate="txtOICName" Display="Dynamic" runat="server">
+                                                    <asp:RequiredFieldValidator runat="server" ID="rfvOICName" ForeColor="Red" Display="Dynamic"
+                                                        ControlToValidate="ddlOicName" ValidationGroup="Save" ErrorMessage="Select OIC Name."
+                                                        Text="<i class='fa fa-exclamation-circle' title='Required !'></i>" InitialValue="0">
                                                     </asp:RequiredFieldValidator>
-                                                    <asp:TextBox ID="txtOICName" runat="server" CssClass="form-control" MaxLength="70" AutoComplete="off"></asp:TextBox>
+                                                    <asp:DropDownList runat="server" ID="ddlOicName" CssClass="form-control select2"
+                                                        OnSelectedIndexChanged="ddlOicName_SelectedIndexChanged" AutoPostBack="true">
+                                                    </asp:DropDownList>
+                                                   <%-- <asp:TextBox ID="txtOICName" runat="server"  CssClass="form-control" onkeyup="javascript:capFirst(this);"  onkeypress="return lettersOnly();" MaxLength="70" AutoComplete="off"></asp:TextBox>--%>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>
-                                                        Mobile No.</label><span style="color: red;"><b> *</b></span>
-                                                    <asp:RequiredFieldValidator ID="rfvoicMobile" ValidationGroup="Save"
+                                                        Mobile No.</label>
+                                                   <%-- <asp:RequiredFieldValidator ID="rfvoicMobile" ValidationGroup="Save"
                                                         ErrorMessage="Enter OIC Mobile No." ForeColor="Red" Text="<i class='fa fa-exclamation-circle' title='Required !'></i>"
                                                         ControlToValidate="txtOICMobileNo" Display="Dynamic" runat="server">
                                                     </asp:RequiredFieldValidator>
                                                     <asp:RegularExpressionValidator ID="RegularExpressionValidator1" ValidationGroup="Save" runat="server" Display="Dynamic" ControlToValidate="txtOICMobileNo"
                                                         ErrorMessage="Invalid Mobile No." SetFocusOnError="true"
-                                                        ForeColor="Red" ValidationExpression="^([6-9]{1}[0-9]{9})$"></asp:RegularExpressionValidator>
-                                                    <asp:TextBox ID="txtOICMobileNo" runat="server" CssClass="form-control" MaxLength="10" AutoComplete="off" onkeypress="return NumberOnly();"></asp:TextBox>
+                                                        ForeColor="Red" ValidationExpression="^([6-9]{1}[0-9]{9})$"></asp:RegularExpressionValidator>--%>
+                                                    <asp:TextBox ID="txtOICMobileNo" runat="server" ReadOnly="true" CssClass="form-control" MaxLength="10" AutoComplete="off" onkeypress="return NumberOnly();"></asp:TextBox>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>
+                                                       Email-ID.</label>
+                                                    <asp:TextBox runat="server" ID="txtEmailID" CssClass="form-control" ReadOnly="true"></asp:TextBox>
                                                 </div>
                                             </div>
                                         </div>
@@ -351,7 +361,7 @@
                                                 <div class="form-group">
                                                     <label>
                                                         Advocate Name</label>
-                                                    <asp:TextBox ID="txtDeptAdvocateName" runat="server" AutoComplete="off" CssClass="form-control" MaxLength="70"></asp:TextBox>
+                                                    <asp:TextBox ID="txtDeptAdvocateName" runat="server" AutoComplete="off" onkeyup="javascript:capFirst(this);"  onkeypress="return lettersOnly();" CssClass="form-control" MaxLength="70"></asp:TextBox>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -402,7 +412,7 @@
                                                 <div class="form-group">
                                                     <label>
                                                         Name</label>
-                                                    <asp:TextBox ID="txtPetitionerAdvName" runat="server" placeholder="Name" CssClass="form-control" MaxLength="50" AutoComplete="off" ></asp:TextBox>
+                                                    <asp:TextBox ID="txtPetitionerAdvName" runat="server" placeholder="Name" onkeyup="javascript:capFirst(this);" onkeypress="return lettersOnly();" CssClass="form-control" MaxLength="50" AutoComplete="off" ></asp:TextBox>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -430,7 +440,11 @@
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label>Document Name</label>
-                                                            <asp:TextBox ID="txtDocName" runat="server" MaxLength="50" AutoComplete="off" CssClass="form-control"></asp:TextBox>
+                                                            <asp:RequiredFieldValidator runat="server" ID="rfvDocumentName" ForeColor="Red" Display="Dynamic" 
+                                                                ControlToValidate="txtDocName" ValidationGroup="Save" ErrorMessage="Enter Document Name." Text="<i class='fa fa-exclamation-circle' title='Required !'></i>" >
+
+                                                            </asp:RequiredFieldValidator>
+                                                            <asp:TextBox ID="txtDocName" placeholder="Enter Document Name" runat="server" MaxLength="50" AutoComplete="off" CssClass="form-control"></asp:TextBox>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
@@ -441,7 +455,7 @@
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <asp:Button ID="btnAddDoc" runat="server" Text="Add" CssClass="btn btn-primary btn-block" OnClick="btnAddDoc_Click" />
+                                                            <asp:Button ID="btnAddDoc" runat="server" Text="Add" ValidationGroup="Add" CssClass="btn btn-primary btn-block" OnClick="btnAddDoc_Click" />
                                                         </div>
                                                     </div>
                                                 </div>

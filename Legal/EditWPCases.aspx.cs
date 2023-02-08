@@ -180,7 +180,7 @@ public partial class Legal_EditWPCases : System.Web.UI.Page
     {
         List<int> List = new List<int>();
         ddlCaseYear.Items.Clear();
-        for (int i = 2019; i <= DateTime.Now.Year; i++)
+        for (int i = 2018; i <= DateTime.Now.Year; i++)
         {
             List.Add(i);
             ddlCaseYear.DataSource = List;

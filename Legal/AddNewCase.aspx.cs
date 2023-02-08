@@ -38,6 +38,7 @@ public partial class Legal_AddNewCase : System.Web.UI.Page
                     FillYear();
                     FillColumn();
                     FillDesignation();
+                    BiunOicName();
                 }
             }
             else
@@ -51,6 +52,7 @@ public partial class Legal_AddNewCase : System.Web.UI.Page
         }
 
     }
+    #region Fill Designation
     protected void FillDesignation()
     {
         try
@@ -71,6 +73,7 @@ public partial class Legal_AddNewCase : System.Web.UI.Page
             lblMsg.Text = objdb.Alert("fa-ban", "alert-danger", "Sorry!", ex.Message.ToString());
         }
     }
+    #endregion
     #region Fill Year
     protected void FillYear()
     {
@@ -115,6 +118,29 @@ public partial class Legal_AddNewCase : System.Web.UI.Page
             dtcol.Columns.Add("Document", typeof(string));
         }
         ViewState["dtcol"] = dtcol;
+    }
+    #endregion
+    #region Fill OICName
+    protected void BiunOicName()
+    {
+        try
+        {
+            ddlOicName.Items.Clear();
+            ds = objdb.ByProcedure("Usp_Oic_Name", new string[] { }, new string[] { }, "dataset");
+            if (ds != null && ds.Tables[0].Rows.Count > 0)
+            {
+                ddlOicName.DataTextField = "OICName";
+                ddlOicName.DataValueField = "OICMaster_ID";
+                ddlOicName.DataSource = ds;
+                ddlOicName.DataBind();
+            }
+            ddlOicName.Items.Insert(0, new ListItem("Select", "0"));
+        }
+        catch (Exception ex)
+        {
+
+            lblMsg.Text = objdb.Alert("fa-ban", "alert-danger", "Sorry!", ex.Message.ToString());
+        }
     }
     #endregion
     #region Fill CourtName
@@ -167,14 +193,14 @@ public partial class Legal_AddNewCase : System.Web.UI.Page
                 ddlDistrict.DataValueField = "District_ID";
                 ddlDistrict.DataBind();
 
-                ddlDistrictCourt.DataSource = ds;
-                ddlDistrictCourt.DataTextField = "District_Name";
-                ddlDistrictCourt.DataValueField = "District_ID";
-                ddlDistrictCourt.DataBind();
+                //ddlDistrictCourt.DataSource = ds;
+                //ddlDistrictCourt.DataTextField = "District_Name";
+                //ddlDistrictCourt.DataValueField = "District_ID";
+                //ddlDistrictCourt.DataBind();
             }
 
             ddlDistrict.Items.Insert(0, new ListItem("Select", "0"));
-            ddlDistrictCourt.Items.Insert(0, new ListItem("Select", "0"));
+            // ddlDistrictCourt.Items.Insert(0, new ListItem("Select", "0"));
         }
         catch (Exception ex)
         {
@@ -269,11 +295,11 @@ public partial class Legal_AddNewCase : System.Web.UI.Page
 
                         ds = objdb.ByProcedure("USP_Insert_AddNewCaseReg", new string[] {"OldCaseNo", "CaseNo", "Casetype_ID", "CourtType_Id", "CaseSubject_ID", "CaseRegDate",
                             "LastHearingDate", "CourtDistrictLocation_ID", "HighPrioritiCaseSts", "CaseDetail","PetitonerName", 
-                            "PetitionerMobileNo", "PetiAdvocateName", "PetiAdvocateMobile", "OICName", "OICMobileNo", "DeptAdvocateName",
+                            "PetitionerMobileNo", "PetiAdvocateName", "PetiAdvocateMobile", "OICName", "DeptAdvocateName",
                             "DeptAdvocateMobileNo",  "CaseYear", "CreatedBy", "CreatedByIP"},
                             new string[] { txtCaseOldRefNo.Text.Trim(), txtCaseNo.Text.Trim(), ddlCasetype.SelectedValue, ddlCourtType.SelectedValue, ddlCaseSubject.SelectedValue, Convert.ToDateTime(txtDateOfCaseReg.Text, cult).ToString("yyyy/MM/dd"),
                                 Convert.ToDateTime(txtDateOfLastHearing.Text, cult).ToString("yyyy/MM/dd"),ddlDistrict.SelectedValue,ddlHighprioritycase.SelectedItem.Text,txtCaseDetail.Text.Trim(), txtPetitionerAppName.Text.Trim(),
-                            txtPetitionerAppMobileNo.Text.Trim(),txtPetitionerAdvName.Text.Trim(),txtPetitionerAdvMobileNo.Text.Trim(),txtOICName.Text.Trim(),txtOICMobileNo.Text.Trim(), txtDeptAdvocateName.Text.Trim(),txtDeptAdvocateMobileNo.Text.Trim(),
+                            txtPetitionerAppMobileNo.Text.Trim(),txtPetitionerAdvName.Text.Trim(),txtPetitionerAdvMobileNo.Text.Trim(),ddlOicName.SelectedValue, txtDeptAdvocateName.Text.Trim(),txtDeptAdvocateMobileNo.Text.Trim(),
                            ddlCaseYear.SelectedItem.Text.Trim(),ViewState["Emp_ID"].ToString(),objdb.GetLocalIPAddress()}, new string[] { "type_AddNewCaseReponderDtl", "type_LegalCaseDocDetail" }, new DataTable[] { dtresponder, DtNew }, "dataset");
                     }
                     if (ds != null && ds.Tables[0].Rows.Count > 0)
@@ -339,7 +365,7 @@ public partial class Legal_AddNewCase : System.Web.UI.Page
         ddlCaseYear.ClearSelection();
         ddlDistrict.ClearSelection();
         ddlHighprioritycase.ClearSelection();
-        txtOICName.Text = "";
+        ddlOicName.ClearSelection();
         GrdRespondent.DataSource = null;
         GrdRespondent.DataBind();
     }
@@ -484,32 +510,33 @@ public partial class Legal_AddNewCase : System.Web.UI.Page
         ViewState["Responder"] = dtCol;
     }
     #endregion
-    protected void ddlCourtType_SelectedIndexChanged(object sender, EventArgs e)
-    {
-        try
-        {
-            try
-            {
-                if (ddlCourtType.SelectedValue == "5")
-                {
-                    DistrictCourtSelect.Visible = true;
-                }
-                else
-                {
-                    DistrictCourtSelect.Visible = false;
-                }
-            }
-            catch (Exception ex)
-            {
-                lblMsg.Text = objdb.Alert("fa-ban", "alert-danger", "Sorry!", ex.Message.ToString());
-            }
+    //protected void ddlCourtType_SelectedIndexChanged(object sender, EventArgs e)
+    //{
+    //    try
+    //    {
+    //        try
+    //        {
+    //            if (ddlCourtType.SelectedValue == "5")
+    //            {
+    //                DistrictCourtSelect.Visible = true;
+    //            }
+    //            else
+    //            {
+    //                DistrictCourtSelect.Visible = false;
+    //            }
+    //        }
+    //        catch (Exception ex)
+    //        {
+    //            lblMsg.Text = objdb.Alert("fa-ban", "alert-danger", "Sorry!", ex.Message.ToString());
+    //        }
 
-        }
-        catch (Exception ex)
-        {
-            lblMsg.Text = objdb.Alert("fa-ban", "alert-danger", "Sorry!", ex.Message.ToString());
-        }
-    }
+    //    }
+    //    catch (Exception ex)
+    //    {
+    //        lblMsg.Text = objdb.Alert("fa-ban", "alert-danger", "Sorry!", ex.Message.ToString());
+    //    }
+    //}
+    #region Bind OfficeName
     protected void ddlOfficetypeName_SelectedIndexChanged(object sender, EventArgs e)
     {
         try
@@ -533,6 +560,7 @@ public partial class Legal_AddNewCase : System.Web.UI.Page
             lblMsg.Text = objdb.Alert("fa-ban", "alert-danger", "Sorry !", ex.Message.ToString());
         }
     }
+    #endregion
     #region Save Add ResponderDtl
     protected void btnYes_Click(object sender, EventArgs e)
     {
@@ -571,6 +599,35 @@ public partial class Legal_AddNewCase : System.Web.UI.Page
         {
 
             throw;
+        }
+    }
+    #endregion
+    #region Bind MobileNo&Email
+    protected void ddlOicName_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        try
+        {
+            ds = objdb.ByProcedure("Usp_Oic_MobileEmailGet", new string[] { "OICMaster_ID" }, new string[] { ddlOicName.SelectedValue }, "dataset");
+            if (ds != null)
+            {
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+                    txtOICMobileNo.Text = ds.Tables[0].Rows[0]["OICMobileNo"].ToString();
+                    txtEmailID.Text = ds.Tables[0].Rows[0]["OICEmailID"].ToString();
+                }
+                else
+                {
+                    txtOICMobileNo.Text = "";
+                    txtEmailID.Text = "";
+
+                }
+            }
+
+        }
+        catch (Exception ex)
+        {
+
+            lblMsg.Text = objdb.Alert("fa-ban", "alert-warning", "Sorry!", ex.Message.ToString());
         }
     }
     #endregion
