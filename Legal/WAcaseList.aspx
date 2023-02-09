@@ -30,7 +30,7 @@
                                                 ControlToValidate="txtDate" Display="Dynamic" runat="server">
                                             </asp:RequiredFieldValidator><br />
                                             प्रारंभिक तिथि</label>
-                                        <asp:TextBox ID="txtDate" runat="server" data-provide="datepicker" placeholder="DD/MM/YYYY" CssClass="form-control disableFuturedate" data-date-format="dd/mm/yyyy" data-date-autoclose="true" AutoComplete="off"></asp:TextBox>
+                                        <asp:TextBox ID="txtDate" runat="server" data-provide="datepicker" data-date-end-date="0d" placeholder="DD/MM/YYYY" CssClass="form-control disableFuturedate" data-date-format="dd/mm/yyyy" data-date-autoclose="true" AutoComplete="off"></asp:TextBox>
                                     </div>
                                 </div>
                                 <div class="col-md-3 col-sm">
@@ -46,7 +46,7 @@
                                         <asp:TextBox ID="txtEndDate" runat="server" data-date-end-date="0d" data-provide="datepicker" placeholder="DD/MM/YYYY" CssClass="form-control disableFuturedate" data-date-format="dd/mm/yyyy" data-date-autoclose="true" AutoComplete="off"></asp:TextBox>
                                     </div>
                                 </div>
-                                <div class="col-md-3 col-sm mt-5">
+                                <div class="col-md-3 col-sm" style="margin-top:3.4rem">
                                     <div class="row">
                                         <div class="col-md-6 col-sm">
                                             <asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="btn btn-primary btn-block" ValidationGroup="Save" OnClick="btnSearch_Click" />

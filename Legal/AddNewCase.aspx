@@ -187,7 +187,7 @@
                                     <div class="form-group">
                                         <label>Case Year</label><span style="color: red;"><b>*</b></span>
                                         <asp:RequiredFieldValidator ID="rfvCaseyear" ValidationGroup="Save"
-                                            ErrorMessage="Select Case type." ForeColor="Red" Text="<i class='fa fa-exclamation-circle' title='Required !'></i>"
+                                            ErrorMessage="Select Case year." ForeColor="Red" Text="<i class='fa fa-exclamation-circle' title='Required !'></i>"
                                             ControlToValidate="ddlCaseYear" Display="Dynamic" runat="server" InitialValue="0">
                                         </asp:RequiredFieldValidator>
                                         <asp:DropDownList ID="ddlCaseYear" runat="server" CssClass="form-control"></asp:DropDownList>
@@ -244,10 +244,18 @@
                                                 ErrorMessage="Select Case Subject." ForeColor="Red" Text="<i class='fa fa-exclamation-circle' title='Required !'></i>"
                                                 ControlToValidate="ddlCaseSubject" Display="Dynamic" runat="server" InitialValue="0">
                                             </asp:RequiredFieldValidator>
-                                            <asp:DropDownList ID="ddlCaseSubject" runat="server" class="form-control select2">
+                                            <asp:DropDownList ID="ddlCaseSubject" runat="server" class="form-control select2" OnSelectedIndexChanged="ddlCaseSubject_SelectedIndexChanged" AutoPostBack="true">
                                             </asp:DropDownList>
 
                                         </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Sub Subject<span style="color:red"><b>*</b></span></label>
+                                        <asp:DropDownList runat="server" ID="ddlSubSubject" CssClass="form-control">
+
+                                        </asp:DropDownList>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
@@ -259,18 +267,18 @@
                                                 ErrorMessage="Enter Date Of Case Registration." ForeColor="Red" Text="<i class='fa fa-exclamation-circle' title='Required !'></i>"
                                                 ControlToValidate="txtDateOfCaseReg" Display="Dynamic" runat="server">
                                             </asp:RequiredFieldValidator>--%>
-                                            <asp:TextBox ID="txtDateOfCaseReg" date-provide="datepicker" runat="server" data-date-end-date="0d" data-date-start-date="0d" AutoComplete="off" placeholder="DD/MM/YYYY" class="form-control" ClientIDMode="Static"></asp:TextBox>
+                                            <asp:TextBox ID="txtDateOfCaseReg" date-provide="datepicker" runat="server" data-date-end-date="0d" AutoComplete="off" placeholder="DD/MM/YYYY" class="form-control" ClientIDMode="Static"></asp:TextBox>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label>
-                                            Last Hearing Date</label>
-                                       <%-- <asp:RequiredFieldValidator ID="rfvLastHearingdate" ValidationGroup="Save"
+                                            Last Hearing Date<span style="color:red"><b>*</b></span></label>
+                                        <asp:RequiredFieldValidator ID="rfvLastHearingdate" ValidationGroup="Save"
                                             ErrorMessage="Enter Date Of Last Hearing." ForeColor="Red" Text="<i class='fa fa-exclamation-circle' title='Required !'></i>"
                                             ControlToValidate="txtDateOfLastHearing" Display="Dynamic" runat="server">
-                                        </asp:RequiredFieldValidator>--%>
+                                        </asp:RequiredFieldValidator>
                                         <asp:TextBox ID="txtDateOfLastHearing" runat="server" date-provide="datepicker" AutoComplete="off" data-date-end-date="0d" placeholder="DD/MM/YYYY" class="form-control" ClientIDMode="Static"></asp:TextBox>
                                     </div>
                                 </div>
@@ -441,7 +449,7 @@
                                                         <div class="form-group">
                                                             <label>Document Name</label>
                                                             <asp:RequiredFieldValidator runat="server" ID="rfvDocumentName" ForeColor="Red" Display="Dynamic" 
-                                                                ControlToValidate="txtDocName" ValidationGroup="Save" ErrorMessage="Enter Document Name." Text="<i class='fa fa-exclamation-circle' title='Required !'></i>" >
+                                                                ControlToValidate="txtDocName" ValidationGroup="Add" ErrorMessage="Enter Document Name." Text="<i class='fa fa-exclamation-circle' title='Required !'></i>" >
 
                                                             </asp:RequiredFieldValidator>
                                                             <asp:TextBox ID="txtDocName" placeholder="Enter Document Name" runat="server" MaxLength="50" AutoComplete="off" CssClass="form-control"></asp:TextBox>

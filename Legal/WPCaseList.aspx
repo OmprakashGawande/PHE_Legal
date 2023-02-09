@@ -130,7 +130,7 @@
                                                 ControlToValidate="txtFromDate" Display="Dynamic" runat="server">
                                             </asp:RequiredFieldValidator><br />
                                             प्रारंभिक तिथि</label>
-                                        <asp:TextBox ID="txtFromDate" runat="server" data-provide="datepicker" placeholder="DD/MM/YYYY" CssClass="form-control disableFuturedate" data-date-format="dd/mm/yyyy" data-date-autoclose="true" AutoComplete="off"></asp:TextBox>
+                                        <asp:TextBox ID="txtFromDate" runat="server" data-provide="datepicker" placeholder="DD/MM/YYYY" CssClass="form-control disableFuturedate" data-date-end-date="0d" data-date-format="dd/mm/yyyy" data-date-autoclose="true" AutoComplete="off"></asp:TextBox>
                                     </div>
                                 </div>
                                 <div class="col-md-3 col-sm">
@@ -157,7 +157,7 @@
                                         <asp:DropDownList ID="ddlCasetype" runat="server" CssClass="form-control"></asp:DropDownList>
                                     </div>
                                 </div>
-                                <div class="col-md-3 col-sm mt-5">
+                                <div class="col-md-3 col-sm" style="margin-top:3.4rem">
                                     <div class="row">
                                         <div class="col-md-6">
                                             <asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="btn btn-primary btn-block" ValidationGroup="Save" OnClick="btnSearch_Click" />

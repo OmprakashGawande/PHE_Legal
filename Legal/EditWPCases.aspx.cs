@@ -633,7 +633,7 @@ public partial class Legal_EditWPCases : System.Web.UI.Page
                     string ErrMsg = ds.Tables[0].Rows[0]["ErrMsg"].ToString();
                     if (ds.Tables[0].Rows[0]["Msg"].ToString() == "OK")
                     {
-                        lblMsg.Text = obj.Alert("fa-ban", "alert-success", "Thanks !", ErrMsg);
+                        lblMsg.Text = obj.Alert("fa-check", "alert-success", "Thanks !", ErrMsg);
                         txtPetitionerName.Text = "";
                         ddlOfficeType.ClearSelection();
                         ddlCaseSubject.ClearSelection();
@@ -715,11 +715,18 @@ public partial class Legal_EditWPCases : System.Web.UI.Page
                     string ErrMsg = ds.Tables[0].Rows[0]["ErrMsg"].ToString();
                     if (ds.Tables[0].Rows[0]["Msg"].ToString() == "OK")
                     {
-                        lblMsg.Text = obj.Alert("fa-ban", "alert-success", "Thanks !", ErrMsg);
+                        lblMsg.Text = obj.Alert("fa-check", "alert-success", "Thanks !", ErrMsg);
                         txtResponderName.Text = "";
                         txtResponderNo.Text = "";
                         txtAddress.Text = "";
                         txtDepartment.Text = "";
+                        txtResponderName_Res.Text = "";
+                        ddlDesignation_Res.ClearSelection();
+                        txtResponderNo_Res.Text = "";
+                        txtResponderDept_Res.Text = "";
+                        ddlOfficeType_Res.ClearSelection();
+                        txtResponderAdd_Res.Text = "";
+                        ddlOfficeName_Res.ClearSelection();
                         ddlResponderType_Res.ClearSelection();
                         ddlEditRespondertype.ClearSelection();
                         ddlEditRespondertype.ClearSelection();
@@ -863,7 +870,7 @@ public partial class Legal_EditWPCases : System.Web.UI.Page
                         string ErrMsg = ds.Tables[0].Rows[0]["ErrMsg"].ToString();
                         if (ds.Tables[0].Rows[0]["Msg"].ToString() == "OK")
                         {
-                            lblMsg.Text = obj.Alert("fa-ban", "alert-success", "Thanks !", ErrMsg);
+                            lblMsg.Text = obj.Alert("fa-check", "alert-success", "Thanks !", ErrMsg);
                             txtDocumentName.Text = "";
                             ViewState["CaseDoc"] = "";
                         }
@@ -1157,7 +1164,7 @@ public partial class Legal_EditWPCases : System.Web.UI.Page
                     string ErrorMsg = ds.Tables[0].Rows[0]["ErrMsg"].ToString();
                     if (ds.Tables[0].Rows[0]["Msg"].ToString() == "OK")
                     {
-                        lblMsg.Text = obj.Alert("fa-ban", "alert-success", "Thanks !", ErrorMsg);
+                        lblMsg.Text = obj.Alert("fa-check", "alert-success", "Thanks !", ErrorMsg);
 
                         AddNewHearing.Visible = false;
                         lnkbtnAddNewHering.Visible = true;
@@ -1264,7 +1271,7 @@ public partial class Legal_EditWPCases : System.Web.UI.Page
                             string ErrMsg = ds.Tables[0].Rows[0]["ErrMsg"].ToString();
                             if (ds.Tables[0].Rows[0]["Msg"].ToString() == "OK")
                             {
-                                lblMsg.Text = obj.Alert("fa-ban", "alert-success", "Thanks !", ErrMsg);
+                                lblMsg.Text = obj.Alert("fa-check", "alert-success", "Thanks !", ErrMsg);
                                 ddlDisposalType.ClearSelection();
                                 ViewState["FileOrderDOC"] = "";
                                 CaseDisposeStatus();

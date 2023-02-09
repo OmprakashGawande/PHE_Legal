@@ -204,7 +204,8 @@ public partial class Legal_AddNewCase : System.Web.UI.Page
         }
         catch (Exception ex)
         {
-            lblMsg.Text = objdb.Alert("fa-ban", "alert-danger", "Sorry!", ex.Message.ToString());
+            ErrorLogCls.SendErrorToText(ex);
+            //lblMsg.Text = objdb.Alert("fa-ban", "alert-danger", "Sorry!", ex.Message.ToString());
         }
     }
     #endregion
@@ -262,15 +263,7 @@ public partial class Legal_AddNewCase : System.Web.UI.Page
                 {
                     string Hearing_Date = "";
                     string DateofReceipt = "";
-                    string DateofFiling = "";
-                    if (txtHearingDate.Text != "")
-                    {
-                        Hearing_Date = Convert.ToDateTime(txtHearingDate.Text, cult).ToString("yyyy/MM/dd");
-                    }
-                    else
-                    {
-                        Hearing_Date = "";
-                    }
+                    string LastHearingDate = "";
                     if (txtDateOfCaseReg.Text != "")
                     {
                         DateofReceipt = Convert.ToDateTime(txtDateOfCaseReg.Text, cult).ToString("yyyy/MM/dd");
@@ -281,11 +274,11 @@ public partial class Legal_AddNewCase : System.Web.UI.Page
                     }
                     if (txtDateOfLastHearing.Text != "")
                     {
-                        DateofFiling = Convert.ToDateTime(txtDateOfLastHearing.Text, cult).ToString("yyyy/MM/dd");
+                        LastHearingDate = Convert.ToDateTime(txtDateOfLastHearing.Text, cult).ToString("yyyy/MM/dd");
                     }
                     else
                     {
-                        DateofFiling = "";
+                        LastHearingDate = "";
                     }
                     lblMsg.Text = "";
                     if (btnSubmit.Text == "Save")
@@ -293,12 +286,12 @@ public partial class Legal_AddNewCase : System.Web.UI.Page
                         DataTable DtNew = ViewState["DocData"] as DataTable;
                         DataTable dtresponder = ViewState["dt"] as DataTable;
 
-                        ds = objdb.ByProcedure("USP_Insert_AddNewCaseReg", new string[] {"OldCaseNo", "CaseNo", "Casetype_ID", "CourtType_Id", "CaseSubject_ID", "CaseRegDate",
-                            "LastHearingDate", "CourtDistrictLocation_ID", "HighPrioritiCaseSts", "CaseDetail","PetitonerName", 
+                        ds = objdb.ByProcedure("USP_Insert_AddNewCaseReg", new string[] {"OldCaseNo", "CaseNo", "Casetype_ID", "CourtType_Id", "CourtDistrictLocation_ID", "CaseSubject_ID","CaseSubSubj_Id", "CaseRegDate",
+                            "LastHearingDate", "HighPrioritiCaseSts", "CaseDetail","PetitonerName", 
                             "PetitionerMobileNo", "PetiAdvocateName", "PetiAdvocateMobile", "OICName", "DeptAdvocateName",
                             "DeptAdvocateMobileNo",  "CaseYear", "CreatedBy", "CreatedByIP"},
-                            new string[] { txtCaseOldRefNo.Text.Trim(), txtCaseNo.Text.Trim(), ddlCasetype.SelectedValue, ddlCourtType.SelectedValue, ddlCaseSubject.SelectedValue, Convert.ToDateTime(txtDateOfCaseReg.Text, cult).ToString("yyyy/MM/dd"),
-                                Convert.ToDateTime(txtDateOfLastHearing.Text, cult).ToString("yyyy/MM/dd"),ddlDistrict.SelectedValue,ddlHighprioritycase.SelectedItem.Text,txtCaseDetail.Text.Trim(), txtPetitionerAppName.Text.Trim(),
+                            new string[] { txtCaseOldRefNo.Text.Trim(), txtCaseNo.Text.Trim(), ddlCasetype.SelectedValue, ddlCourtType.SelectedValue,ddlDistrict.SelectedValue, ddlCaseSubject.SelectedValue,ddlSubSubject.SelectedValue, DateofReceipt,
+                                LastHearingDate,ddlHighprioritycase.SelectedItem.Text,txtCaseDetail.Text.Trim(), txtPetitionerAppName.Text.Trim(),
                             txtPetitionerAppMobileNo.Text.Trim(),txtPetitionerAdvName.Text.Trim(),txtPetitionerAdvMobileNo.Text.Trim(),ddlOicName.SelectedValue, txtDeptAdvocateName.Text.Trim(),txtDeptAdvocateMobileNo.Text.Trim(),
                            ddlCaseYear.SelectedItem.Text.Trim(),ViewState["Emp_ID"].ToString(),objdb.GetLocalIPAddress()}, new string[] { "type_AddNewCaseReponderDtl", "type_LegalCaseDocDetail" }, new DataTable[] { dtresponder, DtNew }, "dataset");
                     }
@@ -487,7 +480,6 @@ public partial class Legal_AddNewCase : System.Web.UI.Page
         }
     }
     #endregion
-
     #region  Respondent Column
     protected void FillColumn()
     {
@@ -631,5 +623,28 @@ public partial class Legal_AddNewCase : System.Web.UI.Page
         }
     }
     #endregion
+    protected void ddlCaseSubject_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        try
+        {
+            lblMsg.Text = "";
+            ddlSubSubject.Items.Clear();
+            DataSet DsSubs = objdb.ByDataSet("select CaseSubSubj_Id, CaseSubSubject from tbl_CaseSubSubjectMaster where CaseSubjectID=" + ddlCaseSubject.SelectedValue);
+            if (DsSubs != null && DsSubs.Tables[0].Rows.Count > 0)
+            {
+                ddlSubSubject.DataTextField = "CaseSubSubject";
+                ddlSubSubject.DataValueField = "CaseSubSubj_Id";
+                ddlSubSubject.DataSource = DsSubs;
+                ddlSubSubject.DataBind();
+            }
+            ddlSubSubject.Items.Insert(0, new ListItem("Select", "0"));
+
+        }
+        catch (Exception ex)
+        {
+            ErrorLogCls.SendErrorToText(ex);
+            //lblMsg.Text = objdb.Alert("fa-ban", "alert-danger", "Sorry !", ex.Message.ToString());
+        }
+    }
 }
 
