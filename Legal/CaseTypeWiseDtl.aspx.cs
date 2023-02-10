@@ -23,7 +23,7 @@ public partial class Legal_CaseTypeWiseDtl : System.Web.UI.Page
         }
         else
         {
-            Response.Redirect("/Login.aspx");
+            Response.Redirect("/Login.aspx",false);
         }
     }
     private void GetCaseType()
@@ -47,8 +47,9 @@ public partial class Legal_CaseTypeWiseDtl : System.Web.UI.Page
                 ddlCaseType.Items.Insert(0, new ListItem("Select", "0"));
             }
         }
-        catch (Exception)
+        catch (Exception ex)
         {
+            ErrorLogCls.SendErrorToText(ex);
         }
 
     }
@@ -77,10 +78,9 @@ public partial class Legal_CaseTypeWiseDtl : System.Web.UI.Page
                 grdCaseTypedtl.DataBind();
             }
         }
-        catch (Exception)
+        catch (Exception ex)
         {
-
-            throw;
+            ErrorLogCls.SendErrorToText(ex);
         }
     }
 
@@ -96,12 +96,15 @@ public partial class Legal_CaseTypeWiseDtl : System.Web.UI.Page
         }
         catch (Exception ex)
         {
-            lblMsg.Text = obj.Alert("fa-ban", "alert-danger", "Sorry !", ex.Message.ToString());
+            ErrorLogCls.SendErrorToText(ex);
+            //lblMsg.Text = obj.Alert("fa-ban", "alert-danger", "Sorry !", ex.Message.ToString());
         }
     }
     protected void grdCaseTypedtl_RowCommand(object sender, GridViewCommandEventArgs e)
     {
-        lblMsg.Text = "";
+        try
+        {
+            lblMsg.Text = "";
         if (e.CommandName == "ViewDtl")
         {
             GridViewRow row = (GridViewRow)((LinkButton)e.CommandSource).NamingContainer;
@@ -147,6 +150,11 @@ public partial class Legal_CaseTypeWiseDtl : System.Web.UI.Page
             txtCasetype.Text = lblCasetype.Text;
             Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", "myModal()", true);
         }
+        }
+        catch (Exception ex)
+        {
+            ErrorLogCls.SendErrorToText(ex);
+        }
     }
 
     protected void grdCaseTypedtl_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -157,10 +165,9 @@ public partial class Legal_CaseTypeWiseDtl : System.Web.UI.Page
             grdCaseTypedtl.PageIndex = e.NewPageIndex;
             BindGrid();
         }
-        catch (Exception)
+        catch (Exception ex)
         {
-
-            throw;
+            ErrorLogCls.SendErrorToText(ex);
         }
     }
 }

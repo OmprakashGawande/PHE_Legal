@@ -66,7 +66,8 @@ public partial class Legal_EditWPCases : System.Web.UI.Page
         }
         catch (Exception ex)
         {
-            lblMsg.Text = obj.Alert("fa-ban", "alert-danger", "Sorry !", ex.Message.ToString());
+            ErrorLogCls.SendErrorToText(ex);
+            //lblMsg.Text = obj.Alert("fa-ban", "alert-danger", "Sorry !", ex.Message.ToString());
         }
     }
     #region Fill Designarion
@@ -142,7 +143,8 @@ public partial class Legal_EditWPCases : System.Web.UI.Page
         }
         catch (Exception ex)
         {
-            lblMsg.Text = obj.Alert("fa-ban", "alert-danger", "Sorry!", ex.Message.ToString());
+            ErrorLogCls.SendErrorToText(ex);
+            //lblMsg.Text = obj.Alert("fa-ban", "alert-danger", "Sorry!", ex.Message.ToString());
         }
     }
     #endregion
@@ -171,7 +173,8 @@ public partial class Legal_EditWPCases : System.Web.UI.Page
         }
         catch (Exception ex)
         {
-            lblMsg.Text = obj.Alert("fa-ban", "alert-danger", "Sorry !", ex.Message.ToString());
+            ErrorLogCls.SendErrorToText(ex);
+            //lblMsg.Text = obj.Alert("fa-ban", "alert-danger", "Sorry !", ex.Message.ToString());
         }
     }
     #endregion
@@ -227,7 +230,8 @@ public partial class Legal_EditWPCases : System.Web.UI.Page
         }
         catch (Exception ex)
         {
-            lblMsg.Text = obj.Alert("fa-ban", "alert-danger", "Sorry !", ex.Message.ToString());
+            ErrorLogCls.SendErrorToText(ex);
+            //lblMsg.Text = obj.Alert("fa-ban", "alert-danger", "Sorry !", ex.Message.ToString());
         }
     }
     #endregion
@@ -249,7 +253,8 @@ public partial class Legal_EditWPCases : System.Web.UI.Page
         }
         catch (Exception ex)
         {
-            lblMsg.Text = obj.Alert("fa-ban", "Alert-danger", "Sorry !", ex.Message.ToString());
+            ErrorLogCls.SendErrorToText(ex);
+            //lblMsg.Text = obj.Alert("fa-ban", "Alert-danger", "Sorry !", ex.Message.ToString());
         }
     }
     #endregion
@@ -302,7 +307,8 @@ public partial class Legal_EditWPCases : System.Web.UI.Page
         }
         catch (Exception ex)
         {
-            lblMsg.Text = obj.Alert("fa-ban", "Alert-danger", "Sorry !", ex.Message.ToString());
+            ErrorLogCls.SendErrorToText(ex);
+            //lblMsg.Text = obj.Alert("fa-ban", "Alert-danger", "Sorry !", ex.Message.ToString());
         }
     }
 
@@ -389,7 +395,8 @@ public partial class Legal_EditWPCases : System.Web.UI.Page
         }
         catch (Exception ex)
         {
-            lblMsg.Text = obj.Alert("fa-ban", "alert-danger", "Sorry !", ex.Message.ToString());
+            ErrorLogCls.SendErrorToText(ex);
+            //lblMsg.Text = obj.Alert("fa-ban", "alert-danger", "Sorry !", ex.Message.ToString());
         }
         finally { ds.Clear(); }
     }
@@ -439,7 +446,8 @@ public partial class Legal_EditWPCases : System.Web.UI.Page
         }
         catch (Exception ex)
         {
-            lblMsg.Text = obj.Alert("fa-ban", "alert-danger", "Sorry !", ex.Message.ToString());
+            ErrorLogCls.SendErrorToText(ex);
+            //lblMsg.Text = obj.Alert("fa-ban", "alert-danger", "Sorry !", ex.Message.ToString());
         }
 
     }
@@ -569,7 +577,8 @@ public partial class Legal_EditWPCases : System.Web.UI.Page
         }
         catch (Exception ex)
         {
-            lblMsg.Text = obj.Alert("fa-ban", "alert-danger", "Sorry !", ex.Message.ToString());
+            ErrorLogCls.SendErrorToText(ex);
+            //lblMsg.Text = obj.Alert("fa-ban", "alert-danger", "Sorry !", ex.Message.ToString());
         }
         finally { ds.Clear(); }
     }
@@ -663,7 +672,8 @@ public partial class Legal_EditWPCases : System.Web.UI.Page
         }
         catch (Exception ex)
         {
-            lblMsg.Text = obj.Alert("fa-ban", "alert-danger", "Sorry !", ex.Message.ToString());
+            ErrorLogCls.SendErrorToText(ex);
+            //lblMsg.Text = obj.Alert("fa-ban", "alert-danger", "Sorry !", ex.Message.ToString());
         }
     }
     #endregion
@@ -685,7 +695,8 @@ public partial class Legal_EditWPCases : System.Web.UI.Page
         }
         catch (Exception ex)
         {
-            lblMsg.Text = obj.Alert("fa-ban", "alert-danger", "Sorry !", ex.Message.ToString());
+            ErrorLogCls.SendErrorToText(ex);
+            //lblMsg.Text = obj.Alert("fa-ban", "alert-danger", "Sorry !", ex.Message.ToString());
         }
     }
     #region Insert Edit Respondent Dtl
@@ -753,7 +764,8 @@ public partial class Legal_EditWPCases : System.Web.UI.Page
         }
         catch (Exception ex)
         {
-            lblMsg.Text = obj.Alert("fa-ban", "alert-danger", "Sorry !", ex.Message.ToString());
+            ErrorLogCls.SendErrorToText(ex);
+            //lblMsg.Text = obj.Alert("fa-ban", "alert-danger", "Sorry !", ex.Message.ToString());
         }
     }
     #endregion
@@ -892,7 +904,8 @@ public partial class Legal_EditWPCases : System.Web.UI.Page
             }
             catch (Exception ex)
             {
-                lblMsg.Text = obj.Alert("fa-ban", "alert-danger", "Sorry !", ex.Message.ToString());
+                ErrorLogCls.SendErrorToText(ex);
+                //lblMsg.Text = obj.Alert("fa-ban", "alert-danger", "Sorry !", ex.Message.ToString());
             }
         }
     }
@@ -919,7 +932,8 @@ public partial class Legal_EditWPCases : System.Web.UI.Page
         }
         catch (Exception ex)
         {
-            lblMsg.Text = obj.Alert("fa-ban", "alert-danger", "Sorry !", ex.Message.ToString());
+            ErrorLogCls.SendErrorToText(ex);
+            //lblMsg.Text = obj.Alert("fa-ban", "alert-danger", "Sorry !", ex.Message.ToString());
         }
     }
     protected void ddlDisposalType_SelectedIndexChanged(object sender, EventArgs e)
@@ -947,7 +961,8 @@ public partial class Legal_EditWPCases : System.Web.UI.Page
         }
         catch (Exception ex)
         {
-            lblMsg.Text = obj.Alert("fa-ban", "alert-danger", "Sorry !", ex.Message.ToString());
+            ErrorLogCls.SendErrorToText(ex);
+            //lblMsg.Text = obj.Alert("fa-ban", "alert-danger", "Sorry !", ex.Message.ToString());
         }
     }
     protected void rdCaseDispose_SelectedIndexChanged(object sender, EventArgs e)
@@ -972,7 +987,8 @@ public partial class Legal_EditWPCases : System.Web.UI.Page
         }
         catch (Exception ex)
         {
-            lblMsg.Text = obj.Alert("fa-ban", "alert-danger", "Sorry !", ex.Message.ToString());
+            ErrorLogCls.SendErrorToText(ex);
+            //lblMsg.Text = obj.Alert("fa-ban", "alert-danger", "Sorry !", ex.Message.ToString());
         }
     }
     protected void ddlOfficeType_SelectedIndexChanged(object sender, EventArgs e)
@@ -995,7 +1011,8 @@ public partial class Legal_EditWPCases : System.Web.UI.Page
         }
         catch (Exception ex)
         {
-            lblMsg.Text = obj.Alert("fa-ban", "alert-danger", "Sorry !", ex.Message.ToString());
+            ErrorLogCls.SendErrorToText(ex);
+            //lblMsg.Text = obj.Alert("fa-ban", "alert-danger", "Sorry !", ex.Message.ToString());
         }
     }
     #region Add Hearing_datatable
@@ -1078,7 +1095,8 @@ public partial class Legal_EditWPCases : System.Web.UI.Page
         }
         catch (Exception ex)
         {
-            lblMsg.Text = obj.Alert("fa-ban", "alert-danger", "Sorry !", ex.Message.ToString());
+            ErrorLogCls.SendErrorToText(ex);
+            //lblMsg.Text = obj.Alert("fa-ban", "alert-danger", "Sorry !", ex.Message.ToString());
         }
     }
     #endregion
@@ -1189,7 +1207,8 @@ public partial class Legal_EditWPCases : System.Web.UI.Page
         }
         catch (Exception ex)
         {
-            lblMsg.Text = obj.Alert("fa-ban", "alert-danger", "Sorry !", ex.Message.ToString());
+            ErrorLogCls.SendErrorToText(ex);
+            //lblMsg.Text = obj.Alert("fa-ban", "alert-danger", "Sorry !", ex.Message.ToString());
         }
     }
     #endregion
@@ -1205,7 +1224,8 @@ public partial class Legal_EditWPCases : System.Web.UI.Page
         }
         catch (Exception ex)
         {
-            lblMsg.Text = obj.Alert("fa-ban", "alert-danger", "Sorry !", ex.Message.ToString());
+            ErrorLogCls.SendErrorToText(ex);
+            //lblMsg.Text = obj.Alert("fa-ban", "alert-danger", "Sorry !", ex.Message.ToString());
         }
     }
     #region Case Dispose Save
@@ -1297,7 +1317,8 @@ public partial class Legal_EditWPCases : System.Web.UI.Page
         }
         catch (Exception ex)
         {
-            lblMsg.Text = obj.Alert("fa-ban", "alert-danger", "Sorry !", ex.Message.ToString());
+            ErrorLogCls.SendErrorToText(ex);
+            //lblMsg.Text = obj.Alert("fa-ban", "alert-danger", "Sorry !", ex.Message.ToString());
         }
     }
     #endregion
@@ -1338,7 +1359,8 @@ public partial class Legal_EditWPCases : System.Web.UI.Page
         }
         catch (Exception ex)
         {
-            lblMsg.Text = obj.Alert("fa-ban", "alert-danger", "Sorry !", ex.Message.ToString());
+            ErrorLogCls.SendErrorToText(ex);
+            //lblMsg.Text = obj.Alert("fa-ban", "alert-danger", "Sorry !", ex.Message.ToString());
         }
     }
     protected void btnHearingBack_Click(object sender, EventArgs e)// Hearing back Btn
@@ -1360,7 +1382,8 @@ public partial class Legal_EditWPCases : System.Web.UI.Page
         }
         catch (Exception ex)
         {
-            lblMsg.Text = obj.Alert("fa-ban", "alert-danger", "Sorry !", ex.Message.ToString());
+            ErrorLogCls.SendErrorToText(ex);
+            //lblMsg.Text = obj.Alert("fa-ban", "alert-danger", "Sorry !", ex.Message.ToString());
         }
     }
     protected void ddlOfficetype_EditRes_SelectedIndexChanged(object sender, EventArgs e)
@@ -1382,7 +1405,8 @@ public partial class Legal_EditWPCases : System.Web.UI.Page
         }
         catch (Exception ex)
         {
-            lblMsg.Text = obj.Alert("fa-ban", "alert-danger", "Sorry !", ex.Message.ToString());
+            ErrorLogCls.SendErrorToText(ex);
+            //lblMsg.Text = obj.Alert("fa-ban", "alert-danger", "Sorry !", ex.Message.ToString());
         }
     }
     protected void lnkBack_Click(object sender, EventArgs e) // For Back Button
@@ -1422,7 +1446,8 @@ public partial class Legal_EditWPCases : System.Web.UI.Page
         }
         catch (Exception ex)
         {
-            lblMsg.Text = obj.Alert("fa-ban", "alert-danger", "Sorry !", ex.Message.ToString());
+            ErrorLogCls.SendErrorToText(ex);
+            //lblMsg.Text = obj.Alert("fa-ban", "alert-danger", "Sorry !", ex.Message.ToString());
         }
 
     }
@@ -1440,7 +1465,8 @@ public partial class Legal_EditWPCases : System.Web.UI.Page
         }
         catch (Exception ex)
         {
-            lblMsg.Text = obj.Alert("fa-ban", "alert-danger", "Sorry !", ex.Message.ToString());
+            ErrorLogCls.SendErrorToText(ex);
+            //lblMsg.Text = obj.Alert("fa-ban", "alert-danger", "Sorry !", ex.Message.ToString());
         }
     }
     protected void ddlHearingDtl_SelectedIndexChanged(object sender, EventArgs e)
@@ -1455,7 +1481,8 @@ public partial class Legal_EditWPCases : System.Web.UI.Page
         }
         catch (Exception ex)
         {
-            lblMsg.Text = obj.Alert("fa-ban", "alert-danger", "Sorry !", ex.Message.ToString());
+            ErrorLogCls.SendErrorToText(ex);
+            //lblMsg.Text = obj.Alert("fa-ban", "alert-danger", "Sorry !", ex.Message.ToString());
         }
     }
     protected void ddlCaseSubject_SelectedIndexChanged(object sender, EventArgs e)
@@ -1476,7 +1503,8 @@ public partial class Legal_EditWPCases : System.Web.UI.Page
         }
         catch (Exception ex)
         {
-            lblMsg.Text = obj.Alert("fa-ban", "alert-danger", "Sorry !", ex.Message.ToString());
+            ErrorLogCls.SendErrorToText(ex);
+            //lblMsg.Text = obj.Alert("fa-ban", "alert-danger", "Sorry !", ex.Message.ToString());
         }
     }
 }

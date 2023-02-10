@@ -389,8 +389,11 @@
                                             ErrorMessage="Enter Document Name." ForeColor="Red" Text="<i class='fa fa-exclamation-circle' title='Required !'></i>"
                                             ControlToValidate="txtDocumentName" Display="Dynamic" runat="server">
                                         </asp:RequiredFieldValidator>
-
                                         <asp:TextBox ID="txtDocumentName" runat="server" onkeyup="javascript:capFirst(this);"  CssClass="form-control" MaxLength="50" AutoComplete="off"></asp:TextBox>
+                                        <asp:RegularExpressionValidator runat="server" ID="revDocumentName" Display="Dynamic" ForeColor="Red"
+                                            ControlToValidate="txtDocumentName" ValidationExpression="^[a-zA-Z]+(([\s][a-zA-Z])?[a-zA-Z]*)*$" ValidationGroup="Save" ErrorMessage="please Enter valid Text.">
+
+                                        </asp:RegularExpressionValidator>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -1079,6 +1082,9 @@
                                             ControlToValidate="txtAddResponderName" Display="Dynamic" runat="server">
                                         </asp:RequiredFieldValidator>
                                         <asp:TextBox ID="txtAddResponderName" runat="server" CssClass="form-control" onkeyup="javascript:capFirst(this);" onkeypress="return chcode();" AutoComplete="off" MaxLength="70"></asp:TextBox>
+                                        <asp:RegularExpressionValidator runat="server" ID="revRespondentName" Display="Dynamic" ForeColor="Red"
+                                            ControlToValidate="txtAddResponderName" ValidationExpression="^[a-zA-Z]+(([\s][a-zA-Z])?[a-zA-Z]*)*$" ValidationGroup="AddResponder" ErrorMessage="Please Enter Valid Text.">
+                                        </asp:RegularExpressionValidator>
                                     </div>
                                 </div>
                             </div>

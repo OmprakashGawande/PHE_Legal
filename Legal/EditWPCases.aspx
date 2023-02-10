@@ -385,6 +385,9 @@
                                         </asp:RequiredFieldValidator>
 
                                         <asp:TextBox ID="txtDocumentName" runat="server" CssClass="form-control" MaxLength="50" AutoComplete="off" onkeypress="return chcode();"></asp:TextBox>
+                                        <asp:RegularExpressionValidator runat="server" ID="revDocumentName" Display="Dynamic" ForeColor="Red"
+                                            ControlToValidate="txtDocumentName" ValidationExpression="^[a-zA-Z]+(([\s][a-zA-Z])?[a-zA-Z]*)*$" ValidationGroup="Save" ErrorMessage="Please Enter valid Text." >
+                                        </asp:RegularExpressionValidator>
                                     </div>
                                 </div>
                                 <div class="col-md-4">

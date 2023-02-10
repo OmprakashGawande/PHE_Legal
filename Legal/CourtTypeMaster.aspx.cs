@@ -27,7 +27,7 @@ public partial class Legal_CourtTypeMaster : System.Web.UI.Page
         }
         else
         {
-            Response.Redirect("~/Login.aspx");
+            Response.Redirect("~/Login.aspx",false);
         }
     }
     #region FillGrid
@@ -45,7 +45,8 @@ public partial class Legal_CourtTypeMaster : System.Web.UI.Page
         }
         catch (Exception ex)
         {
-            lblMsg.Text = objdb.Alert("fa-ban", "alert-danger", "Thanks !", ex.Message.ToString());
+            ErrorLogCls.SendErrorToText(ex);
+            //lblMsg.Text = objdb.Alert("fa-ban", "alert-danger", "Thanks !", ex.Message.ToString());
         }
     }
     #endregion

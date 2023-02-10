@@ -33,12 +33,13 @@ public partial class mis_Legal_CaseDetail : System.Web.UI.Page
             }
             else
             {
-                Response.Redirect("~/index.aspx");
+                Response.Redirect("~/index.aspx" , false);
             }
         }
         catch (Exception ex)
         {
-            LblMsg.Text = objdb.Alert("fa-ban", "alert-danger", "Sorry!", ex.Message.ToString());
+            ErrorLogCls.SendErrorToText(ex);
+            //LblMsg.Text = objdb.Alert("fa-ban", "alert-danger", "Sorry!", ex.Message.ToString());
         }
     }
     protected void FillCaseDetail()
@@ -94,7 +95,8 @@ public partial class mis_Legal_CaseDetail : System.Web.UI.Page
         }
         catch (Exception Ex)
         {
-            LblMsg.Text = objdb.Alert("fa-ban", "alert-danger", "Sorry!", Ex.Message.ToString());
+            ErrorLogCls.SendErrorToText(Ex);
+            //LblMsg.Text = objdb.Alert("fa-ban", "alert-danger", "Sorry!", Ex.Message.ToString());
         }
     }
     protected void FillHearingDate()
@@ -129,7 +131,8 @@ public partial class mis_Legal_CaseDetail : System.Web.UI.Page
         }
         catch (Exception Ex)
         {
-            LblMsg.Text = objdb.Alert("fa-ban", "alert-danger", "Sorry!", Ex.Message.ToString());
+            ErrorLogCls.SendErrorToText(Ex);
+            //LblMsg.Text = objdb.Alert("fa-ban", "alert-danger", "Sorry!", Ex.Message.ToString());
         }
 
     }
@@ -180,7 +183,8 @@ public partial class mis_Legal_CaseDetail : System.Web.UI.Page
         }
         catch (Exception ex)
         {
-            LblMsg.Text = objdb.Alert("fa-ban", "alert-danger", "Sorry!", ex.Message.ToString());
+            ErrorLogCls.SendErrorToText(ex);
+            //LblMsg.Text = objdb.Alert("fa-ban", "alert-danger", "Sorry!", ex.Message.ToString());
         }
     }
     protected void GridViewExpense_SelectedIndexChanged(object sender, EventArgs e)
@@ -202,7 +206,8 @@ public partial class mis_Legal_CaseDetail : System.Web.UI.Page
         }
         catch (Exception Ex)
         {
-            LblMsg.Text = objdb.Alert("fa-ban", "alert-danger", "Sorry!", Ex.Message.ToString());
+            ErrorLogCls.SendErrorToText(Ex);
+            //LblMsg.Text = objdb.Alert("fa-ban", "alert-danger", "Sorry!", Ex.Message.ToString());
         }
     }
 }

@@ -231,7 +231,6 @@
                                             </asp:RequiredFieldValidator>
                                             <asp:DropDownList ID="ddlDistrictCourt" runat="server" class="form-control select2" OnSelectedIndexChanged="ddlCourtType_SelectedIndexChanged" AutoPostBack="true">
                                             </asp:DropDownList>
-
                                         </div>
                                     </div>
                                 </div>--%>

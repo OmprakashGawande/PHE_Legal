@@ -36,9 +36,9 @@ public partial class Legal_Cabinet : System.Web.UI.Page
                 gridview.DataBind();
             }
         }
-        catch (Exception)
+        catch (Exception ex)
         {
-
+            ErrorLogCls.SendErrorToText(ex);
         }
     }
 

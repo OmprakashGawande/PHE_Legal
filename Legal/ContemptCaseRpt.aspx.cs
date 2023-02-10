@@ -28,7 +28,7 @@ public partial class Legal_ContemptCaseRpt : System.Web.UI.Page
         }
         else
         {
-            Response.Redirect("/Login.aspx");
+            Response.Redirect("/Login.aspx",false);
         }
     }
 
@@ -50,10 +50,9 @@ public partial class Legal_ContemptCaseRpt : System.Web.UI.Page
                 grdSubjectWiseCasedtl.DataBind();
             }
         }
-        catch (Exception)
+        catch (Exception ex)
         {
-
-            throw;
+            ErrorLogCls.SendErrorToText(ex);
         }
     }
 
@@ -69,12 +68,15 @@ public partial class Legal_ContemptCaseRpt : System.Web.UI.Page
         }
         catch (Exception ex)
         {
-            lblMsg.Text = obj.Alert("fa-ban", "alert-danger", "Sorry !", ex.Message.ToString());
+            ErrorLogCls.SendErrorToText(ex);
+            //lblMsg.Text = obj.Alert("fa-ban", "alert-danger", "Sorry !", ex.Message.ToString());
         }
     }
     protected void grdSubjectWiseCasedtl_RowCommand(object sender, GridViewCommandEventArgs e)
     {
-        lblMsg.Text = "";
+        try
+        {
+             lblMsg.Text = "";
         if (e.CommandName == "ViewDtl")
         {
             GridViewRow row = (GridViewRow)((LinkButton)e.CommandSource).NamingContainer;
@@ -120,11 +122,16 @@ public partial class Legal_ContemptCaseRpt : System.Web.UI.Page
             txtCasetype.Text = lblCasetype.Text;
             Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", "myModal()", true);
         }
+        }
+        catch (Exception ex)
+        {
+            ErrorLogCls.SendErrorToText(ex);
+        }
     }
 
     protected void btnClear_Click(object sender, EventArgs e)
     {
-        Response.Redirect("~/legal/ContemptCaseRpt.aspx");
+        Response.Redirect("~/legal/ContemptCaseRpt.aspx",false);
     }
     protected void grdSubjectWiseCasedtl_PageIndexChanging(object sender, GridViewPageEventArgs e)
     {
@@ -134,10 +141,9 @@ public partial class Legal_ContemptCaseRpt : System.Web.UI.Page
             grdSubjectWiseCasedtl.PageIndex = e.NewPageIndex;
             BindGrid();
         }
-        catch (Exception)
+        catch (Exception ex)
         {
-
-            throw;
+            ErrorLogCls.SendErrorToText(ex);
         }
     }
 }

@@ -48,7 +48,8 @@ public partial class Legal_AddNewCase : System.Web.UI.Page
         }
         catch (Exception ex)
         {
-            lblMsg.Text = objdb.Alert("fa-ban", "alert-danger", "Sorry!", ex.Message.ToString());
+            ErrorLogCls.SendErrorToText(ex);
+            //lblMsg.Text = objdb.Alert("fa-ban", "alert-danger", "Sorry!", ex.Message.ToString());
         }
 
     }
@@ -70,7 +71,8 @@ public partial class Legal_AddNewCase : System.Web.UI.Page
         }
         catch (Exception ex)
         {
-            lblMsg.Text = objdb.Alert("fa-ban", "alert-danger", "Sorry!", ex.Message.ToString());
+            ErrorLogCls.SendErrorToText(ex);
+            //lblMsg.Text = objdb.Alert("fa-ban", "alert-danger", "Sorry!", ex.Message.ToString());
         }
     }
     #endregion
@@ -104,7 +106,8 @@ public partial class Legal_AddNewCase : System.Web.UI.Page
         }
         catch (Exception ex)
         {
-            lblMsg.Text = objdb.Alert("fa-ban", "alert-danger", "Sorry!", ex.Message.ToString());
+            ErrorLogCls.SendErrorToText(ex);
+            //lblMsg.Text = objdb.Alert("fa-ban", "alert-danger", "Sorry!", ex.Message.ToString());
         }
     }
     #endregion
@@ -138,8 +141,8 @@ public partial class Legal_AddNewCase : System.Web.UI.Page
         }
         catch (Exception ex)
         {
-
-            lblMsg.Text = objdb.Alert("fa-ban", "alert-danger", "Sorry!", ex.Message.ToString());
+            ErrorLogCls.SendErrorToText(ex);
+            //lblMsg.Text = objdb.Alert("fa-ban", "alert-danger", "Sorry!", ex.Message.ToString());
         }
     }
     #endregion
@@ -161,6 +164,7 @@ public partial class Legal_AddNewCase : System.Web.UI.Page
         }
         catch (Exception ex)
         {
+            ErrorLogCls.SendErrorToText(ex);
             lblMsg.Text = objdb.Alert("fa-ban", "alert-danger", "Sorry!", ex.Message.ToString());
         }
     }
@@ -168,16 +172,24 @@ public partial class Legal_AddNewCase : System.Web.UI.Page
     #region Fill OfficeType
     protected void BindOfficeType()
     {
-        ddlOfficetypeName.Items.Clear();
-        ds = objdb.ByProcedure("USP_Select_Officetype", new string[] { }, new string[] { }, "dataset");
-        if (ds != null && ds.Tables[0].Rows.Count > 0)
+        try
         {
-            ddlOfficetypeName.DataTextField = "OfficeType_Name";
-            ddlOfficetypeName.DataValueField = "OfficeType_Id";
-            ddlOfficetypeName.DataSource = ds;
-            ddlOfficetypeName.DataBind();
+            ddlOfficetypeName.Items.Clear();
+            ds = objdb.ByProcedure("USP_Select_Officetype", new string[] { }, new string[] { }, "dataset");
+            if (ds != null && ds.Tables[0].Rows.Count > 0)
+            {
+                ddlOfficetypeName.DataTextField = "OfficeType_Name";
+                ddlOfficetypeName.DataValueField = "OfficeType_Id";
+                ddlOfficetypeName.DataSource = ds;
+                ddlOfficetypeName.DataBind();
+            }
+            ddlOfficetypeName.Items.Insert(0, new ListItem("Select", "0"));
         }
-        ddlOfficetypeName.Items.Insert(0, new ListItem("Select", "0"));
+        catch (Exception ex)
+        {
+            ErrorLogCls.SendErrorToText(ex);
+        }
+       
     }
     #endregion
     #region Fill District as Loaction
@@ -227,7 +239,8 @@ public partial class Legal_AddNewCase : System.Web.UI.Page
         }
         catch (Exception ex)
         {
-            lblMsg.Text = objdb.Alert("fa-ban", "alert-danger", "Sorry!", ex.Message.ToString());
+            ErrorLogCls.SendErrorToText(ex);
+           // lblMsg.Text = objdb.Alert("fa-ban", "alert-danger", "Sorry!", ex.Message.ToString());
         }
     }
     #endregion
@@ -322,7 +335,8 @@ public partial class Legal_AddNewCase : System.Web.UI.Page
         }
         catch (Exception ex)
         {
-            lblMsg.Text = objdb.Alert("fa-ban", "alert-danger", "Sorry!", ex.Message.ToString());
+            ErrorLogCls.SendErrorToText(ex);
+            //lblMsg.Text = objdb.Alert("fa-ban", "alert-danger", "Sorry!", ex.Message.ToString());
         }
     }
     #endregion
@@ -372,7 +386,8 @@ public partial class Legal_AddNewCase : System.Web.UI.Page
         }
         catch (Exception ex)
         {
-            lblMsg.Text = objdb.Alert("fa-ban", "alert-danger", "Sorry!", ex.Message.ToString());
+            ErrorLogCls.SendErrorToText(ex);
+            //lblMsg.Text = objdb.Alert("fa-ban", "alert-danger", "Sorry!", ex.Message.ToString());
         }
     }
     #endregion
@@ -394,7 +409,8 @@ public partial class Legal_AddNewCase : System.Web.UI.Page
         }
         catch (Exception ex)
         {
-            lblMsg.Text = objdb.Alert("fa-ban", "alert-danger", "Sorry!", ex.Message.ToString());
+            ErrorLogCls.SendErrorToText(ex);
+            //lblMsg.Text = objdb.Alert("fa-ban", "alert-danger", "Sorry!", ex.Message.ToString());
         }
     }
     #endregion
@@ -476,7 +492,8 @@ public partial class Legal_AddNewCase : System.Web.UI.Page
         }
         catch (Exception ex)
         {
-            lblMsg.Text = objdb.Alert("fa-ban", "alert-danger", "Sorry!", ex.Message.ToString());
+            ErrorLogCls.SendErrorToText(ex);
+            //lblMsg.Text = objdb.Alert("fa-ban", "alert-danger", "Sorry!", ex.Message.ToString());
         }
     }
     #endregion

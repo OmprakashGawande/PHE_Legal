@@ -29,7 +29,7 @@ public partial class Legal_CabinetMeetingMaster : System.Web.UI.Page
         }
         else
         {
-            Response.Redirect("../Login.aspx");
+            Response.Redirect("../Login.aspx", false);
         }
     }
     #region Fill FridView
@@ -51,7 +51,8 @@ public partial class Legal_CabinetMeetingMaster : System.Web.UI.Page
         }
         catch (Exception ex)
         {
-            lblMsg.Text = objdb.Alert("fa-ban", "alert-danger", "Sorry!", ex.Message.ToString());
+            ErrorLogCls.SendErrorToText(ex);
+            //lblMsg.Text = objdb.Alert("fa-ban", "alert-danger", "Sorry!", ex.Message.ToString());
         }
     }
     #endregion
@@ -146,7 +147,8 @@ public partial class Legal_CabinetMeetingMaster : System.Web.UI.Page
         }
         catch (Exception ex)
         {
-            lblMsg.Text = objdb.Alert("fa-ban", "alert-danger", "Sorry!", ex.Message.ToString());
+            ErrorLogCls.SendErrorToText(ex);
+            //lblMsg.Text = objdb.Alert("fa-ban", "alert-danger", "Sorry!", ex.Message.ToString());
         }
     }
     #endregion
@@ -161,8 +163,8 @@ public partial class Legal_CabinetMeetingMaster : System.Web.UI.Page
         }
         catch (Exception ex)
         {
-
-            lblMsg.Text = objdb.Alert("fa-ban", "alert-danger", "Sorry!", ex.Message.ToString());
+            ErrorLogCls.SendErrorToText(ex);
+            //lblMsg.Text = objdb.Alert("fa-ban", "alert-danger", "Sorry!", ex.Message.ToString());
         }
     }
     protected void gridview_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -190,8 +192,8 @@ public partial class Legal_CabinetMeetingMaster : System.Web.UI.Page
         }
         catch (Exception ex)
         {
-
-            lblMsg.Text = objdb.Alert("fa-ban", "alert-danger", "Sorry!", ex.Message.ToString());
+            ErrorLogCls.SendErrorToText(ex);
+            //lblMsg.Text = objdb.Alert("fa-ban", "alert-danger", "Sorry!", ex.Message.ToString());
         }
         finally { if (ds != null) { ds.Dispose(); } }
     }
