@@ -23,7 +23,7 @@ public partial class Legal_OICWiseCaseDtl : System.Web.UI.Page
         }
         else
         {
-            Response.Redirect("/Login.aspx");
+            Response.Redirect("/Login.aspx",false);
         }
     }
 
@@ -47,8 +47,9 @@ public partial class Legal_OICWiseCaseDtl : System.Web.UI.Page
                 ddlOicName.Items.Insert(0, "Select Case Subject");
             }
         }
-        catch (Exception)
+        catch (Exception ex)
         {
+            ErrorLogCls.SendErrorToText(ex);
         }
 
     }
@@ -73,8 +74,9 @@ public partial class Legal_OICWiseCaseDtl : System.Web.UI.Page
                 ddlCaseType.Items.Insert(0, "Select Case Subject");
             }
         }
-        catch (Exception)
+        catch (Exception ex)
         {
+            ErrorLogCls.SendErrorToText(ex);
         }
 
     }

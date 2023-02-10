@@ -29,7 +29,7 @@ public partial class Legal_CaseSubjectMaster : System.Web.UI.Page
         }
         else
         {
-            Response.Redirect("~/Login.aspx");
+            Response.Redirect("~/Login.aspx", false);
         }
 
     }
@@ -49,7 +49,7 @@ public partial class Legal_CaseSubjectMaster : System.Web.UI.Page
         }
         catch (Exception ex)
         {
-
+            ErrorLogCls.SendErrorToText(ex);
         }
     }
 
@@ -86,14 +86,22 @@ public partial class Legal_CaseSubjectMaster : System.Web.UI.Page
         }
         catch (Exception ex)
         {
-            lblMsg.Text = objdb.Alert("fa-ban", "alert-danger", "Thanks !", ex.Message.ToString());
+            ErrorLogCls.SendErrorToText(ex);
+            //lblMsg.Text = objdb.Alert("fa-ban", "alert-danger", "Thanks !", ex.Message.ToString());
         }
     }
-    
+
     protected void grdCaseSubject_PageIndexChanging(object sender, GridViewPageEventArgs e)
     {
-        grdCaseSubject.PageIndex = e.NewPageIndex;
-        BindGridCaseSubject();
+        try
+        {
+            grdCaseSubject.PageIndex = e.NewPageIndex;
+            BindGridCaseSubject();
+        }
+        catch (Exception ex)
+        {
+            ErrorLogCls.SendErrorToText(ex);
+        }
     }
     protected void grdCaseSubject_RowCommand(object sender, GridViewCommandEventArgs e)
     {
@@ -107,7 +115,7 @@ public partial class Legal_CaseSubjectMaster : System.Web.UI.Page
                 Label lblCaseSubjectCode = (Label)row.FindControl("lblCaseSubjectCode");
                 Label lblCaseSubject = (Label)row.FindControl("lblCaseSubject");
                 Label lblCaseSubjectDetail = (Label)row.FindControl("lblCaseSubjectDetail");
-            
+
                 txtCaseSubjectCode.Text = lblCaseSubjectCode.Text;
                 txtCaseSubject.Text = lblCaseSubject.Text;
                 txtCaseSubjectDetail.Text = lblCaseSubjectDetail.Text;
@@ -117,7 +125,8 @@ public partial class Legal_CaseSubjectMaster : System.Web.UI.Page
         }
         catch (Exception ex)
         {
-            lblMsg.Text = objdb.Alert("fa-ban", "alert-danger", "Thanks !", ex.Message.ToString());
+            ErrorLogCls.SendErrorToText(ex);
+            //lblMsg.Text = objdb.Alert("fa-ban", "alert-danger", "Thanks !", ex.Message.ToString());
         }
     }
 }

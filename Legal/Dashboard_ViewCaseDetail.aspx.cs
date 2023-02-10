@@ -73,7 +73,7 @@ public partial class Legal_Dashboard_ViewCaseDetail : System.Web.UI.Page
         }
         else
         {
-            Response.Redirect("../Login.aspx");
+            Response.Redirect("../Login.aspx", false);
         }
     }
 
@@ -129,20 +129,21 @@ public partial class Legal_Dashboard_ViewCaseDetail : System.Web.UI.Page
         }
         catch (Exception ex)
         {
-            lblMsg.Text = obj.Alert("fa-ban", "alert-danger", "Sorry!", ex.Message.ToString());
+            ErrorLogCls.SendErrorToText(ex);
+            //lblMsg.Text = obj.Alert("fa-ban", "alert-danger", "Sorry!", ex.Message.ToString());
         }
     }
     protected void GrdOfficeAndRespndrbyDtl_RowCommand(object sender, GridViewCommandEventArgs e)
     {
         try
         {
-            if(e.CommandName == "ViewDtl")
+            if (e.CommandName == "ViewDtl")
             {
                 GridViewRow row = (GridViewRow)((LinkButton)e.CommandSource).NamingContainer;
                 Label lbltbl = (Label)row.FindControl("lbltbl");
                 Label lblCaseID = (Label)row.FindControl("lblCaseID");
                 Label lblcasstype = (Label)row.FindControl("lblCaetypeID");
-                if(lblcasstype.Text == "1" || lblcasstype.Text == "2")
+                if (lblcasstype.Text == "1" || lblcasstype.Text == "2")
                 {
                     ds = obj.ByProcedure("USP_Legal_ViewAllDtl_RespondeWise", new string[] { "flag", "Casetype_ID", "Case_ID" }
                    , new string[] { "1", lblcasstype.Text, e.CommandArgument.ToString() }, "dataset");
@@ -180,7 +181,8 @@ public partial class Legal_Dashboard_ViewCaseDetail : System.Web.UI.Page
         }
         catch (Exception ex)
         {
-            lblMsg.Text = obj.Alert("fa-ban", "alert-danger", "Sorry!", ex.Message.ToString());
+            ErrorLogCls.SendErrorToText(ex);
+            //lblMsg.Text = obj.Alert("fa-ban", "alert-danger", "Sorry!", ex.Message.ToString());
         }
     }
 }

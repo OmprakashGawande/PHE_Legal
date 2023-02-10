@@ -111,15 +111,23 @@ public partial class Legal_CourtTypeMaster : System.Web.UI.Page
         }
         catch (Exception ex)
         {
-            lblMsg.Text = objdb.Alert("fa-ban", "alert-danger", "Sorry !", ex.Message.ToString());
+            ErrorLogCls.SendErrorToText(ex);
+            //lblMsg.Text = objdb.Alert("fa-ban", "alert-danger", "Sorry !", ex.Message.ToString());
         }
     }
 
     protected void grdCaseSubject_PageIndexChanging(object sender, GridViewPageEventArgs e)
     {
-        lblMsg.Text = "";
-        grdCourtType.PageIndex = e.NewPageIndex;
-        BindGrid();
+        try
+        {
+            lblMsg.Text = "";
+            grdCourtType.PageIndex = e.NewPageIndex;
+            BindGrid();
+        }
+        catch (Exception ex)
+        {
+            ErrorLogCls.SendErrorToText(ex);
+        }
     }
     protected void grdCourtType_RowCommand(object sender, GridViewCommandEventArgs e)
     {
@@ -144,7 +152,8 @@ public partial class Legal_CourtTypeMaster : System.Web.UI.Page
             }
         }
         catch (Exception ex)
-        {          
+        {
+            ErrorLogCls.SendErrorToText(ex);
         }
     }
 
@@ -160,7 +169,8 @@ public partial class Legal_CourtTypeMaster : System.Web.UI.Page
         }
         catch (Exception ex)
         {
-            lblMsg.Text = objdb.Alert("fa-ban", "alert-danger", "Sorry !", ex.Message.ToString());
+            ErrorLogCls.SendErrorToText(ex);
+            //lblMsg.Text = objdb.Alert("fa-ban", "alert-danger", "Sorry !", ex.Message.ToString());
         }
     }
 }

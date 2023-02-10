@@ -26,7 +26,7 @@ public partial class Legal_CaseDisposaltypeMst : System.Web.UI.Page
         }
         else
         {
-            Response.Redirect("../Login.aspx");
+            Response.Redirect("../Login.aspx",false);
         }
     }
 
@@ -49,7 +49,8 @@ public partial class Legal_CaseDisposaltypeMst : System.Web.UI.Page
         }
         catch (Exception ex)
         {
-            lblMsg.Text = obj.Alert("fa-ban", "alert-warning", "Warning !", ex.Message.ToString());
+            ErrorLogCls.SendErrorToText(ex);
+            //lblMsg.Text = obj.Alert("fa-ban", "alert-warning", "Warning !", ex.Message.ToString());
         }
     }
 
@@ -89,7 +90,8 @@ public partial class Legal_CaseDisposaltypeMst : System.Web.UI.Page
         }
         catch (Exception ex)
         {
-            lblMsg.Text = obj.Alert("fa-ban", "alert-warning", "Warning !", ex.Message.ToString());
+            ErrorLogCls.SendErrorToText(ex);
+            //lblMsg.Text = obj.Alert("fa-ban", "alert-warning", "Warning !", ex.Message.ToString());
         }
     }
     protected void GrdCaseDipose_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -109,7 +111,8 @@ public partial class Legal_CaseDisposaltypeMst : System.Web.UI.Page
         }
         catch (Exception ex)
         {
-            lblMsg.Text = obj.Alert("fa-ban", "alert-warning", "Warning !", ex.Message.ToString());
+            ErrorLogCls.SendErrorToText(ex);
+            //lblMsg.Text = obj.Alert("fa-ban", "alert-warning", "Warning !", ex.Message.ToString());
         }
     }
     protected void GrdCaseDipose_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -122,7 +125,8 @@ public partial class Legal_CaseDisposaltypeMst : System.Web.UI.Page
         }
         catch (Exception ex)
         {
-            lblMsg.Text = obj.Alert("fa-ban", "alert-warning", "Warning !", ex.Message.ToString());
+            ErrorLogCls.SendErrorToText(ex);
+            //lblMsg.Text = obj.Alert("fa-ban", "alert-warning", "Warning !", ex.Message.ToString());
         }
     }
 }

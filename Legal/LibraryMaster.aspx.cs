@@ -32,12 +32,13 @@ public partial class Legal_LibraryMaster : System.Web.UI.Page
             }
             else
             {
-                Response.Redirect("~/Login.aspx");
+                Response.Redirect("~/Login.aspx", false);
             }
         }
         catch (Exception ex)
         {
-            lblMsg.Text = objdb.Alert("fa-ban", "alert-danger", "Sorry!", ex.Message.ToString());
+            ErrorLogCls.SendErrorToText(ex);
+            //lblMsg.Text = objdb.Alert("fa-ban", "alert-danger", "Sorry!", ex.Message.ToString());
         }
     }
 
@@ -57,7 +58,7 @@ public partial class Legal_LibraryMaster : System.Web.UI.Page
         }
         catch (Exception ex)
         {
-            throw ex;
+            ErrorLogCls.SendErrorToText(ex);
         }
     }
     private void GetCaseSubject()
@@ -80,8 +81,9 @@ public partial class Legal_LibraryMaster : System.Web.UI.Page
                 ddlCaseSubject.Items.Insert(0, new ListItem("Select", "0"));
             }
         }
-        catch (Exception)
+        catch (Exception ex)
         {
+            ErrorLogCls.SendErrorToText(ex);
         }
 
     }
@@ -126,7 +128,8 @@ public partial class Legal_LibraryMaster : System.Web.UI.Page
         }
         catch (Exception ex)
         {
-            lblMsg.Text = objdb.Alert("fa-ban", "alert-danger", "Thanks !", ex.Message.ToString());
+            ErrorLogCls.SendErrorToText(ex);
+            //lblMsg.Text = objdb.Alert("fa-ban", "alert-danger", "Thanks !", ex.Message.ToString());
         }
     }
 

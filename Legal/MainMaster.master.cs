@@ -188,7 +188,7 @@ public partial class Legal_MainMaster : System.Web.UI.MasterPage
         else
         {
             //Response.Redirect("~/Login.aspx");
-            Response.Redirect("~/Login.aspx");
+            Response.Redirect("~/Login.aspx",false);
         }
 
     }
@@ -196,6 +196,6 @@ public partial class Legal_MainMaster : System.Web.UI.MasterPage
     {
 
         // Response.Redirect("~/Login.aspx");
-        Response.Redirect("~/Login.aspx");
+        Response.Redirect("~/Login.aspx",false);
     }
 }

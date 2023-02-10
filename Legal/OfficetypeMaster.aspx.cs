@@ -26,7 +26,7 @@ public partial class Legal_OfficetypeMaster : System.Web.UI.Page
         }
         else
         {
-            Response.Redirect("../Login.aspx");
+            Response.Redirect("../Login.aspx", false);
         }
     }
 
@@ -51,7 +51,8 @@ public partial class Legal_OfficetypeMaster : System.Web.UI.Page
         }
         catch (Exception ex)
         {
-            lblMsg.Text = obj.Alert("fa-ban", "Alert-danger", "Sorry !", ex.Message.ToString());
+            ErrorLogCls.SendErrorToText(ex);
+            //lblMsg.Text = obj.Alert("fa-ban", "Alert-danger", "Sorry !", ex.Message.ToString());
         }
     }
 
@@ -65,7 +66,7 @@ public partial class Legal_OfficetypeMaster : System.Web.UI.Page
                 if (btnSave.Text == "Save")
                 {
                     ds = obj.ByProcedure("USP_InsertOfficetypeMaster", new string[] { "OfficeType_Name", "CreatedBy", "CreatedByIP" }
-                    , new string[] { txtOfficeTypeName.Text.Trim(),  ViewState["Emp_Id"].ToString(), obj.GetLocalIPAddress()}, "dataset");
+                    , new string[] { txtOfficeTypeName.Text.Trim(), ViewState["Emp_Id"].ToString(), obj.GetLocalIPAddress() }, "dataset");
                 }
                 else if (btnSave.Text == "Update" && ViewState["OfficeTypeID"].ToString() != "" && ViewState["OfficeTypeID"].ToString() != null)
                 {
@@ -95,7 +96,8 @@ public partial class Legal_OfficetypeMaster : System.Web.UI.Page
         }
         catch (Exception ex)
         {
-            lblMsg.Text = obj.Alert("fa-ban", "Alert-danger", "Sorry !", ex.Message.ToString());
+            ErrorLogCls.SendErrorToText(ex);
+            //lblMsg.Text = obj.Alert("fa-ban", "Alert-danger", "Sorry !", ex.Message.ToString());
         }
     }
     protected void grdOfficetypeMst_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -108,7 +110,8 @@ public partial class Legal_OfficetypeMaster : System.Web.UI.Page
         }
         catch (Exception ex)
         {
-            lblMsg.Text = obj.Alert("fa-ban", "Alert-danger", "Sorry !", ex.Message.ToString());
+            ErrorLogCls.SendErrorToText(ex);
+            //lblMsg.Text = obj.Alert("fa-ban", "Alert-danger", "Sorry !", ex.Message.ToString());
         }
     }
 
@@ -130,7 +133,8 @@ public partial class Legal_OfficetypeMaster : System.Web.UI.Page
         }
         catch (Exception ex)
         {
-            lblMsg.Text = obj.Alert("fa-ban", "Alert-danger", "Sorry !", ex.Message.ToString());
+            ErrorLogCls.SendErrorToText(ex);
+            //lblMsg.Text = obj.Alert("fa-ban", "Alert-danger", "Sorry !", ex.Message.ToString());
         }
     }
 }

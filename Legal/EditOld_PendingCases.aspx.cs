@@ -176,31 +176,45 @@ public partial class Legal_EditOld_PendingCases : System.Web.UI.Page
 
     protected void ddlOICNameOpen_SelectedIndexChanged(object sender, EventArgs e)
     {
-        int OICID = Convert.ToInt32(ddlOICNameOpen.SelectedItem.Value);
+        try
+        {
+            int OICID = Convert.ToInt32(ddlOICNameOpen.SelectedItem.Value);
         dsCase = obj.ByDataSet("select OICMaster_ID,OICName,OICEmailID,OICMobileNo,Office_ID,Zone_ID,Circle_ID,Division_ID from tblOICMaster where OICMaster_ID=" + OICID);
         if (dsCase.Tables.Count > 0 && dsCase.Tables[0].Rows.Count > 0)
         {
             txtOICMobileNoOpen.Text = dsCase.Tables[0].Rows[0]["OICMobileNo"].ToString();
         }
+        }
+        catch (Exception ex)
+        {
+            ErrorLogCls.SendErrorToText(ex);
+        }
     }
 
     protected void ddlCaseSubject_SelectedIndexChanged(object sender, EventArgs e)
     {
-        dsCase = obj.ByDataSet("select CaseSubjectID,CaseSubSubj_Id,CaseSubSubject from tbl_CaseSubSubjectMaster where CaseSubjectId=" + Convert.ToInt32(ddlCaseSubject.SelectedItem.Value));
-        if (dsCase.Tables.Count > 0 && dsCase.Tables[0].Rows.Count > 0)
+        try
         {
+            dsCase = obj.ByDataSet("select CaseSubjectID,CaseSubSubj_Id,CaseSubSubject from tbl_CaseSubSubjectMaster where CaseSubjectId=" + Convert.ToInt32(ddlCaseSubject.SelectedItem.Value));
+            if (dsCase.Tables.Count > 0 && dsCase.Tables[0].Rows.Count > 0)
+            {
 
-            ddlCaseSubSubject.DataSource = dsCase.Tables[0];
-            ddlCaseSubSubject.DataTextField = "CaseSubSubject";
-            ddlCaseSubSubject.DataValueField = "CaseSubSubj_Id";
-            ddlCaseSubSubject.DataBind();
-            ddlCaseSubSubject.Items.Insert(0, new ListItem("Select", "0"));
+                ddlCaseSubSubject.DataSource = dsCase.Tables[0];
+                ddlCaseSubSubject.DataTextField = "CaseSubSubject";
+                ddlCaseSubSubject.DataValueField = "CaseSubSubj_Id";
+                ddlCaseSubSubject.DataBind();
+                ddlCaseSubSubject.Items.Insert(0, new ListItem("Select", "0"));
+            }
+            else
+            {
+                ddlCaseSubSubject.DataSource = null;
+                ddlCaseSubSubject.DataBind();
+                ddlCaseSubSubject.Items.Insert(0, new ListItem("Select", "0"));
+            }
         }
-        else
+        catch (Exception ex)
         {
-            ddlCaseSubSubject.DataSource = null;
-            ddlCaseSubSubject.DataBind();
-            ddlCaseSubSubject.Items.Insert(0, new ListItem("Select", "0"));
+            ErrorLogCls.SendErrorToText(ex);
         }
     }
     protected void btnUpdate_Click(object sender, EventArgs e)

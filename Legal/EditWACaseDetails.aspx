@@ -1068,7 +1068,7 @@
                                         <span style="color: red;"><b>*</b></span>
                                         <asp:RequiredFieldValidator ID="rfvDesignation_AddRes" ValidationGroup="AddResponder"
                                             ErrorMessage="Select Designation." ForeColor="Red" Text="<i class='fa fa-exclamation-circle' title='Required !'></i>"
-                                            ControlToValidate="ddlDesignation_AddRes" Display="Dynamic" runat="server">
+                                            ControlToValidate="ddlDesignation_AddRes" Display="Dynamic" runat="server" InitialValue="0">
                                         </asp:RequiredFieldValidator>
                                         <asp:DropDownList ID="ddlDesignation_AddRes" runat="server" CssClass="form-control"></asp:DropDownList>
                                     </div>

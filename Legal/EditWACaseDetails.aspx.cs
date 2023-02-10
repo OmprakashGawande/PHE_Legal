@@ -44,7 +44,7 @@ public partial class Legal_EditWACaseDetails : System.Web.UI.Page
             }
             else
             {
-                Response.Redirect("../Login.aspx" ,false);
+                Response.Redirect("../Login.aspx", false);
             }
         }
         else
@@ -265,45 +265,52 @@ public partial class Legal_EditWACaseDetails : System.Web.UI.Page
     }
     protected void UploadOrderDoc() // when Case Dispose Order Doc Filled.
     {
-        ViewState["FileOrderDOC"] = "";
-        int DocFailedCntExt = 0;
-        int DocFailedCntSize = 0;
-        string strFileName = "";
-        string strExtension = "";
-        string strTimeStamp = "";
-        if (FielUpcaseDisposeOrderDoc.HasFile)     // CHECK IF ANY FILE HAS BEEN SELECTED.
+        try
         {
-
-            string fileExt = System.IO.Path.GetExtension(FielUpcaseDisposeOrderDoc.FileName).Substring(1);
-            string[] supportedTypes = { "png", "jpg", "jpeg", "pdf", "JPG", "JPEG", "PNG", "PDF" };
-            if (!supportedTypes.Contains(fileExt))
-            {
-                DocFailedCntExt += 1;
-            }
-            else if (FielUpcaseDisposeOrderDoc.PostedFile.ContentLength > 512000) // 500 KB = 1024 * 500
-            {
-                DocFailedCntSize += 1;
-            }
-            else
+            ViewState["FileOrderDOC"] = "";
+            int DocFailedCntExt = 0;
+            int DocFailedCntSize = 0;
+            string strFileName = "";
+            string strExtension = "";
+            string strTimeStamp = "";
+            if (FielUpcaseDisposeOrderDoc.HasFile)     // CHECK IF ANY FILE HAS BEEN SELECTED.
             {
 
-                strFileName = FielUpcaseDisposeOrderDoc.FileName.ToString();
-                strExtension = Path.GetExtension(strFileName);
-                strTimeStamp = DateTime.Now.ToString();
-                strTimeStamp = strTimeStamp.Replace("/", "-");
-                strTimeStamp = strTimeStamp.Replace(" ", "-");
-                strTimeStamp = strTimeStamp.Replace(":", "-");
-                string strName = Path.GetFileNameWithoutExtension(strFileName);
-                strFileName = strName + "-Supplier-" + strTimeStamp + strExtension;
-                string path = Path.Combine(Server.MapPath("../Legal/UploadOrderDoc/"), strFileName);
-                FielUpcaseDisposeOrderDoc.SaveAs(path);
+                string fileExt = System.IO.Path.GetExtension(FielUpcaseDisposeOrderDoc.FileName).Substring(1);
+                string[] supportedTypes = { "png", "jpg", "jpeg", "pdf", "JPG", "JPEG", "PNG", "PDF" };
+                if (!supportedTypes.Contains(fileExt))
+                {
+                    DocFailedCntExt += 1;
+                }
+                else if (FielUpcaseDisposeOrderDoc.PostedFile.ContentLength > 512000) // 500 KB = 1024 * 500
+                {
+                    DocFailedCntSize += 1;
+                }
+                else
+                {
 
-                ViewState["FileOrderDOC"] = strFileName;
-                path = "";
-                strFileName = "";
-                strName = "";
+                    strFileName = FielUpcaseDisposeOrderDoc.FileName.ToString();
+                    strExtension = Path.GetExtension(strFileName);
+                    strTimeStamp = DateTime.Now.ToString();
+                    strTimeStamp = strTimeStamp.Replace("/", "-");
+                    strTimeStamp = strTimeStamp.Replace(" ", "-");
+                    strTimeStamp = strTimeStamp.Replace(":", "-");
+                    string strName = Path.GetFileNameWithoutExtension(strFileName);
+                    strFileName = strName + "-Supplier-" + strTimeStamp + strExtension;
+                    string path = Path.Combine(Server.MapPath("../Legal/UploadOrderDoc/"), strFileName);
+                    FielUpcaseDisposeOrderDoc.SaveAs(path);
+
+                    ViewState["FileOrderDOC"] = strFileName;
+                    path = "";
+                    strFileName = "";
+                    strName = "";
+                }
+
             }
-
+        }
+        catch (Exception ex)
+        {
+            ErrorLogCls.SendErrorToText(ex);
         }
     }
     protected void BindYear()
@@ -388,7 +395,7 @@ public partial class Legal_EditWACaseDetails : System.Web.UI.Page
                     lblRefWPCaseNo.Text = ds.Tables[2].Rows[0]["ReAppeal_CaseNo"].ToString();
                     lblWaCasetype.Text = ds.Tables[2].Rows[0]["Casetype_Name"].ToString();
                     lblWACaseYear.Text = ds.Tables[2].Rows[0]["CaseYear"].ToString();
-                    lblWACourtLocation.Text = ds.Tables[2].Rows[0]["CourtLocation"].ToString();   
+                    lblWACourtLocation.Text = ds.Tables[2].Rows[0]["CourtLocation"].ToString();
                     lblWACourtType.Text = ds.Tables[2].Rows[0]["CourtTypeName"].ToString();
                     lblWAPetionerName.Text = ds.Tables[2].Rows[0]["PetitionerName"].ToString();
                     lblWAOfficeType.Text = ds.Tables[2].Rows[0]["OfficeType_Name"].ToString();
@@ -632,7 +639,7 @@ public partial class Legal_EditWACaseDetails : System.Web.UI.Page
                             ddlDisponsType.Items.FindByValue(ds.Tables[0].Rows[0]["CaseDisposalType_Id"].ToString()).Selected = true;
                             ddlDisponsType_SelectedIndexChanged(sender, e);
                             txtCaseDis_OrderTimeline.Text = ds.Tables[0].Rows[0]["CaseDisposal_timeline"].ToString();
-                            
+
                         }
                     }
                     if (ds.Tables[0].Rows[0]["Casetype_ID"].ToString() != "")
@@ -950,14 +957,14 @@ public partial class Legal_EditWACaseDetails : System.Web.UI.Page
                 CaseDisDoc_Div.Visible = true;
                 HearingDtl_CaseDispose.Visible = true;
                 CaseDisOrderTime_Div.Visible = true;
-               // Div_AuthCaseDispose.Visible = true;
+                // Div_AuthCaseDispose.Visible = true;
             }
             else
             {
                 HearingDtl_CaseDispose.Visible = false;
                 CaseDisDate_Div.Visible = false;
                 CaseDisDoc_Div.Visible = false;
-             //   Div_AuthCaseDispose.Visible = false;
+                //   Div_AuthCaseDispose.Visible = false;
                 CaseDisOrderTime_Div.Visible = false;
             }
         }

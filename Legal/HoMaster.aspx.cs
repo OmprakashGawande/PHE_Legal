@@ -177,9 +177,16 @@ public partial class Legal_HoMaster : System.Web.UI.Page
     }
     protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)
     {
-        lblMsg.Text = "";
-        GridView1.PageIndex = e.NewPageIndex;
-        FillGrid();
+        try
+        {
+            lblMsg.Text = "";
+            GridView1.PageIndex = e.NewPageIndex;
+            FillGrid();
+        }
+        catch (Exception ex)
+        {
+            ErrorLogCls.SendErrorToText(ex);
+        }
     }
 }
 

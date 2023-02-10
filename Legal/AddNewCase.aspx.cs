@@ -189,7 +189,7 @@ public partial class Legal_AddNewCase : System.Web.UI.Page
         {
             ErrorLogCls.SendErrorToText(ex);
         }
-       
+
     }
     #endregion
     #region Fill District as Loaction
@@ -240,7 +240,7 @@ public partial class Legal_AddNewCase : System.Web.UI.Page
         catch (Exception ex)
         {
             ErrorLogCls.SendErrorToText(ex);
-           // lblMsg.Text = objdb.Alert("fa-ban", "alert-danger", "Sorry!", ex.Message.ToString());
+            // lblMsg.Text = objdb.Alert("fa-ban", "alert-danger", "Sorry!", ex.Message.ToString());
         }
     }
     #endregion
@@ -298,15 +298,22 @@ public partial class Legal_AddNewCase : System.Web.UI.Page
                     {
                         DataTable DtNew = ViewState["DocData"] as DataTable;
                         DataTable dtresponder = ViewState["dt"] as DataTable;
-
-                        ds = objdb.ByProcedure("USP_Insert_AddNewCaseReg", new string[] {"OldCaseNo", "CaseNo", "Casetype_ID", "CourtType_Id", "CourtDistrictLocation_ID", "CaseSubject_ID","CaseSubSubj_Id", "CaseRegDate",
+                        if (GrdViewDoc.Rows.Count > 0 && GrdRespondent.Rows.Count > 0)
+                        {
+                            ds = objdb.ByProcedure("USP_Insert_AddNewCaseReg", new string[] {"OldCaseNo", "CaseNo", "Casetype_ID", "CourtType_Id", "CourtDistrictLocation_ID", "CaseSubject_ID","CaseSubSubj_Id", "CaseRegDate",
                             "LastHearingDate", "HighPrioritiCaseSts", "CaseDetail","PetitonerName", 
                             "PetitionerMobileNo", "PetiAdvocateName", "PetiAdvocateMobile", "OICName", "DeptAdvocateName",
                             "DeptAdvocateMobileNo",  "CaseYear", "CreatedBy", "CreatedByIP"},
-                            new string[] { txtCaseOldRefNo.Text.Trim(), txtCaseNo.Text.Trim(), ddlCasetype.SelectedValue, ddlCourtType.SelectedValue,ddlDistrict.SelectedValue, ddlCaseSubject.SelectedValue,ddlSubSubject.SelectedValue, DateofReceipt,
+                                new string[] { txtCaseOldRefNo.Text.Trim(), txtCaseNo.Text.Trim(), ddlCasetype.SelectedValue, ddlCourtType.SelectedValue,ddlDistrict.SelectedValue, ddlCaseSubject.SelectedValue,ddlSubSubject.SelectedValue, DateofReceipt,
                                 LastHearingDate,ddlHighprioritycase.SelectedItem.Text,txtCaseDetail.Text.Trim(), txtPetitionerAppName.Text.Trim(),
                             txtPetitionerAppMobileNo.Text.Trim(),txtPetitionerAdvName.Text.Trim(),txtPetitionerAdvMobileNo.Text.Trim(),ddlOicName.SelectedValue, txtDeptAdvocateName.Text.Trim(),txtDeptAdvocateMobileNo.Text.Trim(),
                            ddlCaseYear.SelectedItem.Text.Trim(),ViewState["Emp_ID"].ToString(),objdb.GetLocalIPAddress()}, new string[] { "type_AddNewCaseReponderDtl", "type_LegalCaseDocDetail" }, new DataTable[] { dtresponder, DtNew }, "dataset");
+                        }
+                        else
+                        {
+                            ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('please Add Document & Respondent Detail');", true);
+
+                        }
                     }
                     if (ds != null && ds.Tables[0].Rows.Count > 0)
                     {
@@ -419,8 +426,6 @@ public partial class Legal_AddNewCase : System.Web.UI.Page
     {
         try
         {
-
-
             ViewState["AddNewCaseDoc"] = "";
             int DocFailedCntExt = 0;
             int DocFailedCntSize = 0;
@@ -503,7 +508,7 @@ public partial class Legal_AddNewCase : System.Web.UI.Page
         DataTable dtCol = new DataTable();
         if (dtCol.Columns.Count == 0)
         {
-            dtCol.Columns.Add("RespondenttypeID", typeof(int));
+            //dtCol.Columns.Add("RespondenttypeID", typeof(int));
             dtCol.Columns.Add("OfficeTypeID", typeof(int));
             dtCol.Columns.Add("OfficeNameId", typeof(int));
             dtCol.Columns.Add("DesignationId", typeof(int));
@@ -512,7 +517,7 @@ public partial class Legal_AddNewCase : System.Web.UI.Page
             dtCol.Columns.Add("RespondentMobileNo", typeof(string));
             dtCol.Columns.Add("Department", typeof(string));
             dtCol.Columns.Add("Address", typeof(string));
-            dtCol.Columns.Add("RespondenttypeName", typeof(string));
+            //dtCol.Columns.Add("RespondenttypeName", typeof(string));
             dtCol.Columns.Add("OfficeTypeName", typeof(string));
             dtCol.Columns.Add("OfficeName", typeof(string));
         }
@@ -583,8 +588,8 @@ public partial class Legal_AddNewCase : System.Web.UI.Page
                     DataTable dt = ViewState["Responder"] as DataTable;
                     if (dt.Columns.Count > 0)
                     {
-                        dt.Rows.Add(ddlRespondertype.SelectedValue, ddlOfficetypeName.SelectedValue, ddlOfficeName.SelectedValue, ddlDesignation.SelectedValue, ddlDesignation.SelectedItem.Text, txtResponderName.Text.Trim(),
-                            txtMobileNo.Text.Trim(), txtDepartment.Text.Trim(), txtAddress.Text.Trim(), ddlRespondertype.SelectedItem.Text.Trim(), ddlOfficetypeName.SelectedItem.Text.Trim(), ddlOfficeName.SelectedItem.Text.Trim());
+                        dt.Rows.Add( ddlOfficetypeName.SelectedValue, ddlOfficeName.SelectedValue, ddlDesignation.SelectedValue, ddlDesignation.SelectedItem.Text, txtResponderName.Text.Trim(),
+                            txtMobileNo.Text.Trim(), txtDepartment.Text.Trim(), txtAddress.Text.Trim(), ddlOfficetypeName.SelectedItem.Text.Trim(), ddlOfficeName.SelectedItem.Text.Trim());
                     }
                     if (dt != null && dt.Rows.Count > 0)
                     {
@@ -592,7 +597,7 @@ public partial class Legal_AddNewCase : System.Web.UI.Page
                         GrdRespondent.DataBind();
                         ViewState["dt"] = dt;
 
-                        ddlOfficeName.ClearSelection();
+                        //ddlOfficeName.ClearSelection();
                         ddlDesignation.ClearSelection();
                         ddlRespondertype.ClearSelection();
                         ddlOfficetypeName.ClearSelection();
@@ -607,7 +612,7 @@ public partial class Legal_AddNewCase : System.Web.UI.Page
         catch (Exception ex)
         {
 
-            throw;
+            ErrorLogCls.SendErrorToText(ex);
         }
     }
     #endregion

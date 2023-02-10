@@ -36,7 +36,7 @@ public partial class Legal_MasterRpt_ExcelExport : System.Web.UI.Page
         }
         else
         {
-            Response.Redirect("../Login.aspx");
+            Response.Redirect("../Login.aspx",false);
         }
     }
 
@@ -59,19 +59,28 @@ public partial class Legal_MasterRpt_ExcelExport : System.Web.UI.Page
         }
         catch (Exception ex)
         {
-            lblMsg.Text = obj.Alert("fa-ban", "Alert-danger", "Sorry !", ex.Message.ToString());
+            ErrorLogCls.SendErrorToText(ex);
+            //lblMsg.Text = obj.Alert("fa-ban", "Alert-danger", "Sorry !", ex.Message.ToString());
         }
     }
     #endregion
     #region Fill Year
     protected void FillYear()
     {
-        ddlYear.Items.Clear();
+        try
+        {
+             ddlYear.Items.Clear();
         for (int i = 2016; i <= 2023; i++)
         {
             ddlYear.Items.Add(i.ToString());
         }
         ddlYear.Items.Insert(0, new ListItem("Select", "0"));
+        }
+        catch (Exception ex)
+        {
+            
+            throw;
+        }
     }
     #endregion
     #region Export Excel
@@ -86,10 +95,9 @@ public partial class Legal_MasterRpt_ExcelExport : System.Web.UI.Page
                 ExportExcel(ds, ddlYear.SelectedItem.Text.Trim() + "_" + ddlCasetype.SelectedItem.Text.Trim());
             }
         }
-        catch (Exception)
+        catch (Exception ex)
         {
-
-            throw;
+            ErrorLogCls.SendErrorToText(ex);
         }
     }
     #endregion
@@ -134,7 +142,8 @@ public partial class Legal_MasterRpt_ExcelExport : System.Web.UI.Page
         }
         catch (Exception ex)
         {
-            lblMsg.Text = obj.Alert("fa-ban", "alert-danger", "Sorry!", "Error 7: " + ex.Message.ToString());
+            ErrorLogCls.SendErrorToText(ex);
+            //lblMsg.Text = obj.Alert("fa-ban", "alert-danger", "Sorry!", "Error 7: " + ex.Message.ToString());
         }
        
     }

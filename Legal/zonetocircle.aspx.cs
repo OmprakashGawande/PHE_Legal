@@ -29,7 +29,7 @@ public partial class Legal_zonetocircle : System.Web.UI.Page
         }
         else
         {
-            Response.Redirect("../Login.aspx");
+            Response.Redirect("../Login.aspx",false);
         }
     }
 

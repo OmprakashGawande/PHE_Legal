@@ -28,13 +28,14 @@ public partial class mis_Legal_LegalDashboard : System.Web.UI.Page
             }
             else
             {
-                Response.Redirect("~/Login.aspx");
+                Response.Redirect("~/Login.aspx", false);
             }
         }
 
         catch (Exception ex)
         {
-            lblMsg.Text = objdb.Alert("fa-ban", "alert-danger", "Sorry!", ex.Message.ToString());
+            ErrorLogCls.SendErrorToText(ex);
+            //lblMsg.Text = objdb.Alert("fa-ban", "alert-danger", "Sorry!", ex.Message.ToString());
         }
 
     }
@@ -100,7 +101,8 @@ public partial class mis_Legal_LegalDashboard : System.Web.UI.Page
         }
         catch (Exception ex)
         {
-            lblMsg.Text = objdb.Alert("fa-ban", "alert-danger", "Sorry!", ex.Message.ToString());
+            ErrorLogCls.SendErrorToText(ex);
+            //lblMsg.Text = objdb.Alert("fa-ban", "alert-danger", "Sorry!", ex.Message.ToString());
         }
 
     }
@@ -163,31 +165,39 @@ public partial class mis_Legal_LegalDashboard : System.Web.UI.Page
         }
         catch (Exception ex)
         {
-            lblMsg.Text = objdb.Alert("fa-ban", "alert-danger", "Sorry!", ex.Message.ToString());
+            ErrorLogCls.SendErrorToText(ex);
+            //lblMsg.Text = objdb.Alert("fa-ban", "alert-danger", "Sorry!", ex.Message.ToString());
         }
 
     }
     protected void UpComingHearing()
     {
-        ds = objdb.ByProcedure("USP_GetUpcoming_HearingDate", new string[] { }, new string[] { }, "dataset");
-        string Marquee = "";
-        string space = "<span style='color:black; font-weight:bold;font-size:18px;'>,</span>";
-
-        if (ds.Tables[0].Rows.Count > 0)
+        try
         {
-            for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
-            {
-                if (i == 0)
-                {
-                    Marquee += ds.Tables[0].Rows[i]["HearingDate"].ToString();
-                }
-                else
-                {
-                    Marquee += space + "&nbsp;&nbsp;&nbsp;  " + ds.Tables[0].Rows[i]["HearingDate"].ToString();
-                }
+            ds = objdb.ByProcedure("USP_GetUpcoming_HearingDate", new string[] { }, new string[] { }, "dataset");
+            string Marquee = "";
+            string space = "<span style='color:black; font-weight:bold;font-size:18px;'>,</span>";
 
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                {
+                    if (i == 0)
+                    {
+                        Marquee += ds.Tables[0].Rows[i]["HearingDate"].ToString();
+                    }
+                    else
+                    {
+                        Marquee += space + "&nbsp;&nbsp;&nbsp;  " + ds.Tables[0].Rows[i]["HearingDate"].ToString();
+                    }
+
+                }
+                spnHearing.InnerHtml = Marquee;
             }
-            spnHearing.InnerHtml = Marquee;
+        }
+        catch (Exception ex)
+        {
+            ErrorLogCls.SendErrorToText(ex);
         }
     }
     protected void BIndWACaseCount()
@@ -234,7 +244,7 @@ public partial class mis_Legal_LegalDashboard : System.Web.UI.Page
                 lblRskCases.Text = "00 No's";
                 lblTBCCases.Text = "00 No's";
             }
-           
+
 
             // PP Case
             //if (ds.Tables[0].Rows[0]["PPCase"].ToString() != "")
@@ -287,7 +297,8 @@ public partial class mis_Legal_LegalDashboard : System.Web.UI.Page
         }
         catch (Exception ex)
         {
-            lblMsg.Text = objdb.Alert("fa-ban", "alert-danger", "Sorry!", ex.Message.ToString());
+            ErrorLogCls.SendErrorToText(ex);
+            //lblMsg.Text = objdb.Alert("fa-ban", "alert-danger", "Sorry!", ex.Message.ToString());
         }
     }
 
@@ -305,7 +316,8 @@ public partial class mis_Legal_LegalDashboard : System.Web.UI.Page
         }
         catch (Exception ex)
         {
-            lblMsg.Text = objdb.Alert("fa-ban", "alert-danger", "Sorry!", ex.Message.ToString());
+            ErrorLogCls.SendErrorToText(ex);
+            //lblMsg.Text = objdb.Alert("fa-ban", "alert-danger", "Sorry!", ex.Message.ToString());
         }
     }
     protected void btnDPICase_Click(object sender, EventArgs e)
@@ -322,7 +334,8 @@ public partial class mis_Legal_LegalDashboard : System.Web.UI.Page
         }
         catch (Exception ex)
         {
-            lblMsg.Text = objdb.Alert("fa-ban", "alert-danger", "Sorry!", ex.Message.ToString());
+            ErrorLogCls.SendErrorToText(ex);
+            //lblMsg.Text = objdb.Alert("fa-ban", "alert-danger", "Sorry!", ex.Message.ToString());
         }
     }
     protected void btnJDCases_Click(object sender, EventArgs e)
@@ -339,7 +352,8 @@ public partial class mis_Legal_LegalDashboard : System.Web.UI.Page
         }
         catch (Exception ex)
         {
-            lblMsg.Text = objdb.Alert("fa-ban", "alert-danger", "Sorry!", ex.Message.ToString());
+            ErrorLogCls.SendErrorToText(ex);
+            //lblMsg.Text = objdb.Alert("fa-ban", "alert-danger", "Sorry!", ex.Message.ToString());
         }
     }
     protected void btnDEOCases_Click(object sender, EventArgs e)
@@ -356,7 +370,8 @@ public partial class mis_Legal_LegalDashboard : System.Web.UI.Page
         }
         catch (Exception ex)
         {
-            lblMsg.Text = objdb.Alert("fa-ban", "alert-danger", "Sorry!", ex.Message.ToString());
+            ErrorLogCls.SendErrorToText();
+            //lblMsg.Text = objdb.Alert("fa-ban", "alert-danger", "Sorry!", ex.Message.ToString());
         }
     }
     protected void btnRskCases_Click(object sender, EventArgs e)
@@ -373,7 +388,8 @@ public partial class mis_Legal_LegalDashboard : System.Web.UI.Page
         }
         catch (Exception ex)
         {
-            lblMsg.Text = objdb.Alert("fa-ban", "alert-danger", "Sorry!", ex.Message.ToString());
+            ErrorLogCls.SendErrorToText(ex);
+            //lblMsg.Text = objdb.Alert("fa-ban", "alert-danger", "Sorry!", ex.Message.ToString());
         }
     }
     protected void btnTBCCases_Click(object sender, EventArgs e)
@@ -390,7 +406,8 @@ public partial class mis_Legal_LegalDashboard : System.Web.UI.Page
         }
         catch (Exception ex)
         {
-            lblMsg.Text = objdb.Alert("fa-ban", "alert-danger", "Sorry!", ex.Message.ToString());
+            ErrorLogCls.SendErrorToText(ex);
+            //lblMsg.Text = objdb.Alert("fa-ban", "alert-danger", "Sorry!", ex.Message.ToString());
         }
     }
     protected void btnHighPriorityCase_Click(object sender, EventArgs e)
@@ -412,7 +429,8 @@ public partial class mis_Legal_LegalDashboard : System.Web.UI.Page
         }
         catch (Exception ex)
         {
-            lblMsg.Text = objdb.Alert("fa-ban", "alert-danger", "Sorry !", ex.Message.ToString());
+            ErrorLogCls.SendErrorToText(ex);
+            //lblMsg.Text = objdb.Alert("fa-ban", "alert-danger", "Sorry !", ex.Message.ToString());
         }
     }
 }

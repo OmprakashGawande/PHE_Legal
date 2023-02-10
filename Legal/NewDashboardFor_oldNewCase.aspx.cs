@@ -33,13 +33,14 @@ public partial class Legal_NewDashboardFor_oldNewCase : System.Web.UI.Page
             }
             else
             {
-                Response.Redirect("~/Login.aspx");
+                Response.Redirect("~/Login.aspx" , false);
             }
         }
 
         catch (Exception ex)
         {
-            lblMsg.Text = objdb.Alert("fa-ban", "alert-danger", "Sorry!", ex.Message.ToString());
+            ErrorLogCls.SendErrorToText(ex);
+            //lblMsg.Text = objdb.Alert("fa-ban", "alert-danger", "Sorry!", ex.Message.ToString());
         }
 
     }
@@ -220,7 +221,8 @@ public partial class Legal_NewDashboardFor_oldNewCase : System.Web.UI.Page
         }
         catch (Exception ex)
         {
-            lblMsg.Text = objdb.Alert("fa-ban", "alert-danger", "Sorry!", ex.Message.ToString());
+            ErrorLogCls.SendErrorToText(ex);
+            //lblMsg.Text = objdb.Alert("fa-ban", "alert-danger", "Sorry!", ex.Message.ToString());
         }
 
     }
@@ -284,7 +286,8 @@ public partial class Legal_NewDashboardFor_oldNewCase : System.Web.UI.Page
         }
         catch (Exception ex)
         {
-            lblMsg.Text = objdb.Alert("fa-ban", "alert-danger", "Sorry!", ex.Message.ToString());
+            ErrorLogCls.SendErrorToText(ex);
+            //lblMsg.Text = objdb.Alert("fa-ban", "alert-danger", "Sorry!", ex.Message.ToString());
         }
 
     }
@@ -349,7 +352,8 @@ public partial class Legal_NewDashboardFor_oldNewCase : System.Web.UI.Page
         }
         catch (Exception ex)
         {
-            lblMsg.Text = objdb.Alert("fa-ban", "alert-danger", "Sorry!", ex.Message.ToString());
+            ErrorLogCls.SendErrorToText(ex);
+            //lblMsg.Text = objdb.Alert("fa-ban", "alert-danger", "Sorry!", ex.Message.ToString());
         }
 
     }
@@ -413,7 +417,8 @@ public partial class Legal_NewDashboardFor_oldNewCase : System.Web.UI.Page
         }
         catch (Exception ex)
         {
-            lblMsg.Text = objdb.Alert("fa-ban", "alert-danger", "Sorry!", ex.Message.ToString());
+            ErrorLogCls.SendErrorToText(ex);
+            //lblMsg.Text = objdb.Alert("fa-ban", "alert-danger", "Sorry!", ex.Message.ToString());
         }
 
     }
@@ -477,13 +482,16 @@ public partial class Legal_NewDashboardFor_oldNewCase : System.Web.UI.Page
         }
         catch (Exception ex)
         {
-            lblMsg.Text = objdb.Alert("fa-ban", "alert-danger", "Sorry!", ex.Message.ToString());
+            ErrorLogCls.SendErrorToText(ex);
+            //lblMsg.Text = objdb.Alert("fa-ban", "alert-danger", "Sorry!", ex.Message.ToString());
         }
 
     }
     protected void UpComingHearing()
     {
-        ds = objdb.ByProcedure("USP_GetUpcoming_HearingDate", new string[] { }, new string[] { }, "dataset");
+        try
+        {
+             ds = objdb.ByProcedure("USP_GetUpcoming_HearingDate", new string[] { }, new string[] { }, "dataset");
         string Marquee = "";
         string space = "<span style='color:black; font-weight:bold;font-size:18px;'>,</span>";
 
@@ -502,6 +510,11 @@ public partial class Legal_NewDashboardFor_oldNewCase : System.Web.UI.Page
 
             }
             // spnHearing.InnerHtml = Marquee;
+        }
+        }
+        catch (Exception ex)
+        {
+            ErrorLogCls.SendErrorToText(ex);
         }
     }
 
@@ -562,7 +575,8 @@ public partial class Legal_NewDashboardFor_oldNewCase : System.Web.UI.Page
         }
         catch (Exception ex)
         {
-            lblMsg.Text = objdb.Alert("fa-ban", "alert-danger", "Sorry!", ex.Message.ToString());
+            ErrorLogCls.SendErrorToText(ex);
+            //lblMsg.Text = objdb.Alert("fa-ban", "alert-danger", "Sorry!", ex.Message.ToString());
         }
     }
 
@@ -591,16 +605,24 @@ public partial class Legal_NewDashboardFor_oldNewCase : System.Web.UI.Page
         }
         catch (Exception ex)
         {
-            lblMsg.Text = objdb.Alert("fa-ban", "alert-danger", "Sorry !", ex.Message.ToString());
+            ErrorLogCls.SendErrorToText(ex);
+            //lblMsg.Text = objdb.Alert("fa-ban", "alert-danger", "Sorry !", ex.Message.ToString());
         }
     }
 
     protected void GrdHighpriorityCase_PageIndexChanging(object sender, GridViewPageEventArgs e)
     {
-        GrdHighpriorityCase.PageIndex = e.NewPageIndex;
-        DataTable dt = (DataTable)ViewState["dt"];
-        GrdHighpriorityCase.DataSource = dt;
-        GrdHighpriorityCase.DataBind();
+        try
+        {
+            GrdHighpriorityCase.PageIndex = e.NewPageIndex;
+            DataTable dt = (DataTable)ViewState["dt"];
+            GrdHighpriorityCase.DataSource = dt;
+            GrdHighpriorityCase.DataBind();
+        }
+        catch (Exception ex)
+        {
+            ErrorLogCls.SendErrorToText(ex);
+        }
 
     }
 

@@ -27,22 +27,29 @@ public partial class Legal_OfficeMaster : System.Web.UI.Page
         }
         else
         {
-            Response.Redirect("../Login.aspx");
+            Response.Redirect("../Login.aspx", false);
         }
     }
 
     protected void FillGrid()
     {
-        ds = obj.ByProcedure("USP_Select_OfficeMaster", new string[] { }, new string[] { }, "dataset");
-        if (ds != null && ds.Tables[0].Rows.Count > 0)
+        try
         {
-            GrdOfficeMaster.DataSource = ds;
-            GrdOfficeMaster.DataBind();
+            ds = obj.ByProcedure("USP_Select_OfficeMaster", new string[] { }, new string[] { }, "dataset");
+            if (ds != null && ds.Tables[0].Rows.Count > 0)
+            {
+                GrdOfficeMaster.DataSource = ds;
+                GrdOfficeMaster.DataBind();
+            }
+            else
+            {
+                GrdOfficeMaster.DataSource = null;
+                GrdOfficeMaster.DataBind();
+            }
         }
-        else
+        catch (Exception ex)
         {
-            GrdOfficeMaster.DataSource = null;
-            GrdOfficeMaster.DataBind();
+            ErrorLogCls.SendErrorToText(ex);
         }
     }
 
@@ -63,7 +70,8 @@ public partial class Legal_OfficeMaster : System.Web.UI.Page
         }
         catch (Exception ex)
         {
-            lblMsg.Text = obj.Alert("fa-ban", "alert-warning", "Warning !", ex.Message.ToString());
+            ErrorLogCls.SendErrorToText(ex);
+            //lblMsg.Text = obj.Alert("fa-ban", "alert-warning", "Warning !", ex.Message.ToString());
         }
     }
     protected void btnSave_Click(object sender, EventArgs e)
@@ -106,7 +114,8 @@ public partial class Legal_OfficeMaster : System.Web.UI.Page
         }
         catch (Exception ex)
         {
-            lblMsg.Text = obj.Alert("fa-ban", "alert-warning", "Warning !", ex.Message.ToString());
+            ErrorLogCls.SendErrorToText(ex);
+            //lblMsg.Text = obj.Alert("fa-ban", "alert-warning", "Warning !", ex.Message.ToString());
         }
     }
     protected void GrdOfficeMaster_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -119,7 +128,8 @@ public partial class Legal_OfficeMaster : System.Web.UI.Page
         }
         catch (Exception ex)
         {
-            lblMsg.Text = obj.Alert("fa-ban", "alert-warning", "Warning !", ex.Message.ToString());
+            ErrorLogCls.SendErrorToText(ex);
+            //lblMsg.Text = obj.Alert("fa-ban", "alert-warning", "Warning !", ex.Message.ToString());
         }
     }
     protected void GrdOfficeMaster_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -145,7 +155,8 @@ public partial class Legal_OfficeMaster : System.Web.UI.Page
         }
         catch (Exception ex)
         {
-            lblMsg.Text = obj.Alert("fa-ban", "alert-warning", "Warning !", ex.Message.ToString());
+            ErrorLogCls.SendErrorToText(ex);
+            //lblMsg.Text = obj.Alert("fa-ban", "alert-warning", "Warning !", ex.Message.ToString());
         }
     }
 }

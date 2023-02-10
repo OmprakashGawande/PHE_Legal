@@ -1,0 +1,240 @@
+-----------Exception Details on  10-Feb-23 12:25:25 PM-----------------
+-------------------------------------------------------------------------------------
+
+
+
+Log Written Date: 10-Feb-23 12:25:25 PM
+
+Error Line No : ine 333
+
+Error Message: NullReferenceException
+
+Exception Type: System.NullReferenceException
+
+Error Location : Object reference not set to an instance of an object.
+
+ Error Page Url: http://localhost:58863/Legal/AddNewCase.aspx
+
+User Host IP: 
+
+
+--------------------------------*End*------------------------------------------
+
+
+
+-----------Exception Details on  10-Feb-23 12:28:02 PM-----------------
+-------------------------------------------------------------------------------------
+
+
+
+Log Written Date: 10-Feb-23 12:28:02 PM
+
+Error Line No : ine 461
+
+Error Message: DirectoryNotFoundException
+
+Exception Type: System.IO.DirectoryNotFoundException
+
+Error Location : Could not find a part of the path 'C:\Users\SFAPC-27\Documents\GitHub\PHE_Legal\Legal\AddNewCaseCourtDoc\dd2NewCase-10-Feb-23-12-28-02-PM.pdf'.
+
+ Error Page Url: http://localhost:58863/Legal/AddNewCase.aspx
+
+User Host IP: 
+
+
+--------------------------------*End*------------------------------------------
+
+
+
+-----------Exception Details on  10-Feb-23 12:28:15 PM-----------------
+-------------------------------------------------------------------------------------
+
+
+
+Log Written Date: 10-Feb-23 12:28:15 PM
+
+Error Line No : ine 461
+
+Error Message: DirectoryNotFoundException
+
+Exception Type: System.IO.DirectoryNotFoundException
+
+Error Location : Could not find a part of the path 'C:\Users\SFAPC-27\Documents\GitHub\PHE_Legal\Legal\AddNewCaseCourtDoc\dd2NewCase-10-Feb-23-12-28-15-PM.pdf'.
+
+ Error Page Url: http://localhost:58863/Legal/AddNewCase.aspx
+
+User Host IP: 
+
+
+--------------------------------*End*------------------------------------------
+
+
+
+-----------Exception Details on  10-Feb-23 12:29:20 PM-----------------
+-------------------------------------------------------------------------------------
+
+
+
+Log Written Date: 10-Feb-23 12:29:20 PM
+
+Error Line No : ine 459
+
+Error Message: DirectoryNotFoundException
+
+Exception Type: System.IO.DirectoryNotFoundException
+
+Error Location : Could not find a part of the path 'C:\Users\SFAPC-27\Documents\GitHub\PHE_Legal\Legal\AddNewCaseCourtDoc\dd2NewCase-10-Feb-23-12-28-59-PM.pdf'.
+
+ Error Page Url: http://localhost:58863/Legal/AddNewCase.aspx
+
+User Host IP: 
+
+
+--------------------------------*End*------------------------------------------
+
+
+
+-----------Exception Details on  10-Feb-23 12:30:14 PM-----------------
+-------------------------------------------------------------------------------------
+
+
+
+Log Written Date: 10-Feb-23 12:30:14 PM
+
+Error Line No : ine 459
+
+Error Message: DirectoryNotFoundException
+
+Exception Type: System.IO.DirectoryNotFoundException
+
+Error Location : Could not find a part of the path 'C:\Users\SFAPC-27\Documents\GitHub\PHE_Legal\Legal\AddNewCaseCourtDoc\ddNewCase-10-Feb-23-12-29-37-PM.pdf'.
+
+ Error Page Url: http://localhost:58863/Legal/AddNewCase.aspx
+
+User Host IP: 
+
+
+--------------------------------*End*------------------------------------------
+
+
+
+-----------Exception Details on  10-Feb-23 12:31:02 PM-----------------
+-------------------------------------------------------------------------------------
+
+
+
+Log Written Date: 10-Feb-23 12:31:02 PM
+
+Error Line No : ine 333
+
+Error Message: NullReferenceException
+
+Exception Type: System.NullReferenceException
+
+Error Location : Object reference not set to an instance of an object.
+
+ Error Page Url: http://localhost:58863/Legal/AddNewCase.aspx
+
+User Host IP: 
+
+
+--------------------------------*End*------------------------------------------
+
+
+
+-----------Exception Details on  10-Feb-23 12:34:28 PM-----------------
+-------------------------------------------------------------------------------------
+
+
+
+Log Written Date: 10-Feb-23 12:34:28 PM
+
+Error Line No : ine 531
+
+Error Message: NullReferenceException
+
+Exception Type: System.NullReferenceException
+
+Error Location : Object reference not set to an instance of an object.
+
+ Error Page Url: http://localhost:58863/Legal/EditWACaseDetails.aspx?ID=77
+
+User Host IP: 
+
+
+--------------------------------*End*------------------------------------------
+
+
+
+-----------Exception Details on  10-Feb-23 12:34:42 PM-----------------
+-------------------------------------------------------------------------------------
+
+
+
+Log Written Date: 10-Feb-23 12:34:42 PM
+
+Error Line No : ine 531
+
+Error Message: NullReferenceException
+
+Exception Type: System.NullReferenceException
+
+Error Location : Object reference not set to an instance of an object.
+
+ Error Page Url: http://localhost:58863/Legal/EditWACaseDetails.aspx?ID=77
+
+User Host IP: 
+
+
+--------------------------------*End*------------------------------------------
+
+
+
+-----------Exception Details on  10-Feb-23 3:13:36 PM-----------------
+-------------------------------------------------------------------------------------
+
+
+
+Log Written Date: 10-Feb-23 3:13:36 PM
+
+Error Line No : ine 303
+
+Error Message: ThreadAbortException
+
+Exception Type: System.Threading.ThreadAbortException
+
+Error Location : Thread was being aborted.
+
+ Error Page Url: http://localhost:58863/Legal/AddNewCase.aspx
+
+User Host IP: 
+
+
+--------------------------------*End*------------------------------------------
+
+
+
+-----------Exception Details on  10-Feb-23 4:28:50 PM-----------------
+-------------------------------------------------------------------------------------
+
+
+
+Log Written Date: 10-Feb-23 4:28:50 PM
+
+Error Line No : line 70
+
+Error Message: ThreadAbortException
+
+Exception Type: System.Threading.ThreadAbortException
+
+Error Location : Thread was being aborted.
+
+ Error Page Url: http://localhost:58863/legal/wacaselist.aspx
+
+User Host IP: 
+
+
+--------------------------------*End*------------------------------------------
+
+
+

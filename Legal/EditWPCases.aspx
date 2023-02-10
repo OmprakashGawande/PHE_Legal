@@ -34,10 +34,10 @@
                                 <div class="col-md-3" style="display: none;">
                                     <div class="form-group">
                                         <label>Respondent Type<span style="color:red"><b>*</b></span></label>
-                                        <asp:RequiredFieldValidator ID="rfveditres_respondenttype" ValidationGroup="UpdateResponder"
+                                      <%--  <asp:RequiredFieldValidator ID="rfveditres_respondenttype" ValidationGroup="UpdateResponder"
                                             ErrorMessage="Select Respondent Type." ForeColor="Red" Text="<i class='fa fa-exclamation-circle' title='Required !'></i>"
                                             ControlToValidate="ddlEditRespondertype" Display="Dynamic" runat="server" InitialValue="0">
-                                        </asp:RequiredFieldValidator>
+                                        </asp:RequiredFieldValidator>--%>
                                         <asp:DropDownList ID="ddlEditRespondertype" runat="server" CssClass="form-control"></asp:DropDownList>
                                     </div>
                                 </div>
